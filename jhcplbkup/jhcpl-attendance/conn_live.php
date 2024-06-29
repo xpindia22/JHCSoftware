@@ -1,8 +1,8 @@
 <?php
 //Database credentials for live server
-    $dbname_live = 'jameslkh_jhcpl';
-    $username_live = 'jameslkh_user_info';
-    $password_live = 'c&)WLGHiecg{';
+    $dbname_live = 'mydb';
+    $username_live = 'root';
+    $password_live = '';
 
     // Create connection to live server
     //$livehost = '69.49.233.70';

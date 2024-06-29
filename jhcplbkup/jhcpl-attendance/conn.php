@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$user = "jhcpl";
-$pwd = "jhcpl";
-$db = "jhcpl";
+$user = "root";
+$pwd = "";
+$db = "mydb";
 
 // Create connection
 $conn = new mysqli($host, $user, $pwd, $db);

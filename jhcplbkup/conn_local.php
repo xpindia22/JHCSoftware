@@ -1,21 +1,8 @@
 <?php
-// $servername = "localhost";
-// $username = "jhcpl";
-// $password = "jhcpl";
-// $dbname = "jhcpl";
-
-// // Create connection
-// $conn_local = new mysqli($servername, $username, $password, $dbname);
-
-// // Check connection
-// if ($conn_local->connect_error) {
-//   die("Connection failed: " . $conn_local->connect_error);
-// }
-
- // Database credentials for WAMP server
- $dbname_local = 'jhcpl';
- $username_local = 'jhcpl';
- $password_local = 'jhcpl';
+  // Database credentials for WAMP server
+ $dbname_local = 'mydb';
+ $username_local = 'root';
+ $password_local = '';
 
   // Create connection to WAMP server
   $localhost = 'localhost';
