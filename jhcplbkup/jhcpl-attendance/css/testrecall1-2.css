@@ -1,0 +1,31 @@
+<style>
+    table {
+        color:blue;
+        width:100%;
+        text-align:left;
+        padding:50px;
+        table-layout: fixed;
+
+    }
+    /* tr,td,th{
+        border:1px solid blueviolet;
+        background-color: lightblue;
+        
+    } */
+    th{
+        color:black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f6f0f0; /* Style for even rows */
+      }
+    
+    tr:nth-child(odd) {
+        background-color: #f0eaea; /* Style for odd rows */
+      }
+
+      tr:hover {
+        background-color: #ddd; /* Change background color on hover */
+        }
+     
+        </style>

@@ -1,0 +1,29 @@
+<?php
+$servername = "localhost";
+$username = "jhcpl";
+$password = "jhcpl";
+$dbname = "jhcpl";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM user_data"; // Corrected query to retrieve data
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "Unique ID: " . $row['unique_id'] . "<br>";
+        echo "Name: " . $row['name'] . "<br>";
+        echo "Age: " . $row['age'] . "<br>";
+        echo "Sex: " . $row['sex'] . "<br>";
+        echo "Diagnosis: " . $row['diagnosis'] . "<br><br>";
+    }
+} else {
+    echo "No data found.";
+}
+
+$conn->close();
+?>

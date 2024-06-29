@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User Record</title>
+    <script>
+        function getIDandSubmit() {
+            var id = prompt("Please enter the ID of the record to be deleted:");
+            if (id != null) {
+                document.getElementById('id').value = id;
+                document.getElementById('deleteForm').submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Delete User Record</h1>
+    <form id="deleteForm" method="POST" action="delete.php">
+        <input type="hidden" id="id" name="id">
+    </form>
+    <button onclick="getIDandSubmit()">Delete Record</button>
+</body>
+</html>
