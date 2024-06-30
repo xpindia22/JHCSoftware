@@ -1,10 +1,10 @@
 {
     "name": "xpindia22/HealthCareSoftware",
-    "description": "Health Care Software
-Version: V1.0.2
+    "description": "Health Care Software    
+    Version: V1.0.2
 
-Its an open source software for managing medical clinics and as we progress 
-we will add features for managing hospital as well.
+    Its an open source software for managing medical clinics and as we progress 
+    we will add features for managing hospital as well.
 
 Health Care Software is being made in php, mysql, html, css.",
     "require": {
