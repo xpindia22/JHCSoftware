@@ -1,5 +1,6 @@
 <?php
 //This file will push the form data into the mysql database.
+//Does bkup push into origin /main?
 require 'header-jhcpl.php';//Header logo file
 require_once 'conn.php'; // connect to the database.
 
