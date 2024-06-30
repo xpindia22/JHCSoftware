@@ -3,12 +3,8 @@ using mysql / mariadb database, php, html/css.
 This will be a simple project to manage a clinic.
 
 Patient Registration
-Visits
-Revisits
-Recalling Data from database in tablular format.
-Pharmacy
-Lab
-Accounts ... to begin with.
+Visits, Revisits, Recalling Data from database in tablular format.
+Pharmacy, Lab, Accounts ... to begin with.
 
 Your will have to install apache2 server and mysql or mariadb server. 
 Install wamp server and it will do it automatically for you.
