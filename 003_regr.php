@@ -1,6 +1,6 @@
 <?php
 // require 'css/table-co1.css';
-// require 'header-jhcpl.php';
+require 'header-jhcpl.php';
 //payments are added to index .php itself into user_info table
 //require 'authenticate.php';
 require_once 'conn.php';
