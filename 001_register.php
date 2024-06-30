@@ -3,7 +3,7 @@
  
 
 require_once 'pwd.php'; // connect to the database.
-require 'header-jhcpl.php';
+// require 'header-jhcpl.php';
 require_once 'conn.php'; // connect to the database.
 // Start the session at the beginning of your script
 // session_start();
