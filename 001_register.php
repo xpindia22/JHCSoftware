@@ -1,5 +1,5 @@
 <?php
-//require 'css/style.css';
+// require 'css/style.css';
  
 
 require_once 'pwd.php'; // connect to the database.
