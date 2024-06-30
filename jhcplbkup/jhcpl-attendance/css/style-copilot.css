@@ -1,0 +1,89 @@
+/* Color of the text */
+p {
+    color: red;
+  }
+  
+  /* Background color of an element */
+  body {
+    background-color: #92a8d1;
+  }
+  
+  /* Size of the font */
+  h1 {
+    font-size: 2em;
+  }
+  
+  /* Border of an element */
+  div {
+    border: 1px solid black;
+  }
+  
+  /* Padding space inside an element */
+  .content {
+    padding: 20px;
+  }
+  
+  /* Margin space outside an element */
+  .container {
+    margin: 30px;
+  }
+  
+  /* Display behavior of an element */
+  .hidden {
+    display: none;
+  }
+  
+  /* Positioning method used for an element */
+  .sticky {
+    position: sticky;
+    top: 0;
+  }
+  
+  /* Shorthand property for flex-grow, flex-shrink, and flex-basis */
+  .flex-item {
+    flex: 1;
+  }
+  
+  /* Shorthand property for setting all the grid-related properties */
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  
+  /* Shorthand property for transition-related properties */
+  .transition {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Shorthand property for all the animation-* properties */
+  @keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
+  }
+  
+  .animate {
+    animation-name: example;
+    animation-duration: 4s;
+  }
+  
+  /* Table styles */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f2f2f2; /* light gray */
+  }
+  
+  th, td {
+    border: 1px solid #ddd; /* light gray */
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #ddd; /* darker gray for every other row */
+  }
+  
+  textarea {
+    width: 70%;
+    height: 100px;
+  }
+  
