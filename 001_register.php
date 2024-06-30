@@ -5,15 +5,7 @@
 require_once 'pwd.php'; // connect to the database.
 require 'header-jhcpl.php';
 require_once 'conn.php'; // connect to the database.
-// Start the session at the beginning of your script
-// session_start();
 
-// // Check if the user is logged in
-// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//     // If not, redirect them to the login page
-//     header('Location: login.php');
-//     exit;
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
