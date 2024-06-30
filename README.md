@@ -18,7 +18,7 @@ Details as below, you can keep any db name, user and password. But for ease can 
 on your wamp server.
 
 
-1. Create a database named "mydb"
+Create a database named "mydb"
 You can use phpmyadmin, or create database on command line/terminal.
 
 $host = "localhost";
