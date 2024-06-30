@@ -1,0 +1,8 @@
+{
+    "name": "xpindia22/HealthCareSoftware",
+    "description": "Health Care Software.",
+    "require": {
+        "php": ">=8.2",
+        "another-vendor/package": "1.*"
+    }
+}
