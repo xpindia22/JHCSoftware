@@ -14,7 +14,17 @@ $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $username = $_POST['username'];
 $email = $_POST['email'];
-$password = md5($_POST['password1']); // Hash the password
+$password1 = $_POST['password1'];
+$password2 = $_POST['password2'];
+
+// Validate that passwords match
+if ($password1 !== $password2) {
+    echo "Passwords do not match. Please try again.";
+    exit;
+}
+
+// Hash the password
+$password = md5($password1);
 
 // Insert user data into the 'users' table
 $sql = "INSERT INTO users (fname, lname, username, email, password) 
