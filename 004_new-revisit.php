@@ -116,7 +116,7 @@ echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
       <td><input type='date' id='date' name='date'></td>
     </tr>
     <tr>
-      <td colspan='2'><input type='submit' name='add' value='Add Revisit'></td>
+      <td colspan='2'><input type='submit' name='add' value='Create Consultation Visit'></td>
     </tr>
 </form></table>";
 
