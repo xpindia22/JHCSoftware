@@ -12,7 +12,7 @@ require_once 'conn.php'; // connect to the database.
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration Form</title>
+    <title>Patient Registration Form</title>
     <style>
         body {
             background-color: #f0f0f0; /* Change this to your preferred soothing color */
@@ -34,7 +34,7 @@ require_once 'conn.php'; // connect to the database.
 </head>
 <body class='body-class'>
  
-    <h2>User Registration</h2>
+    <h2>New Patient Registration</h2>
     <form method="POST" action="002_regprocess.php">
     <table> 
     <tbody>
@@ -89,3 +89,4 @@ require_once 'conn.php'; // connect to the database.
 <?php if (!empty($error_message)) : ?>
     <p style="color: red;"><?php echo $error_message; ?></p>
 <?php endif; ?>
+<button><a href="005_visitsAddEdit.php"> <b>Click Here For Registered Patients<b></a></button>
