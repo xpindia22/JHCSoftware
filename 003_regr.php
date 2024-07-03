@@ -101,7 +101,7 @@ if ($result->num_rows > 0) {
         echo "<td style='border: 1px solid black;'>" . $row['name'] . "</td>";
         echo "<td style='border: 1px solid black;'>" . $row['age'] . "</td>";
         echo "<td style='border: 1px solid black;'>" . $row['sex'] . "</td>";
-        echo " <td><a href='004_new-revisit.php?id=".$row["unit_no"]."'>".$row["unit_no"]."</a></td>";
+        echo " <td><a href='004_createconsultation.php?id=".$row["unit_no"]."'>".$row["unit_no"]."</a></td>";
 
         echo "<td style='border: 1px solid black;'>" . $row['diagnosis'] . "</td>";
         echo "<td style='border: 1px solid black;'>" . $row['date'] . "</td>";

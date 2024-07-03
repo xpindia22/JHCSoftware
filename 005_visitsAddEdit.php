@@ -117,7 +117,7 @@ if (isset($_POST['submit'])) {
   } else {
     
      echo "No records found for unit_no: $unit_no  <p><br>
-     <a href='004_new-revisit.php'>Click Here To Create A New Record or Revist</a>";
+     <a href='004_createconsultation.php'>Click Here To Create A New Record or Revist</a>";
    }
 }
 
