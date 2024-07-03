@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
   }
 }
 
-// Display the "Add Revisit Consultation" form regardless of previous visits
+// Display the "Add Consultation Visit" form regardless of previous visits
 echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
   
 <table class='table'> <form method='post' action=''>
