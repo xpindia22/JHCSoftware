@@ -85,5 +85,6 @@ require_once 'conn.php'; // connect to the database.
 
 <?php if (!empty($error_message)) : ?>
     <p style="color: red;"><?php echo $error_message; ?></p>
-<?php endif; ?>
+<?php endif; 
+?>
 <button><a href="005_visitsAddEdit.php"> <b>Click Here For Registered Patients<b></a></button>

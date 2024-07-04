@@ -1,5 +1,5 @@
 <?php
-require_once 'session_check.php';
+
 $host = "localhost";
 $user = "mydb";
 $pwd = "mydb";//password should never be left blank on a live server.
