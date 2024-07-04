@@ -1,12 +1,17 @@
 <?php
+session_start(); // Start the session
+
 require_once 'conn.php';
 
 if (isset($_POST['userid']) && isset($_POST['password'])) {
     $userid = $_POST['userid'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM users WHERE userid='$userid'";
-    $result = $conn->query($query);
+    // Prepare a parameterized query to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM users WHERE userid=?");
+    $stmt->bind_param("s", $userid);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user_data = $result->fetch_assoc();
