@@ -1,3 +1,7 @@
+<?php
+require_once './login/check_login.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,4 +1,9 @@
 <?php
-require_once 'check_login.php';
-// rest of the PHP code
+session_start();
+require_once './conn.php';
+
+if (!isset($_SESSION['userid'])) {
+    header('Location: ./login/login.php');
+    exit;
+}
 ?>
