@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$user = "root";
-$pwd = "";//password should never be left blank on a live server.
+$user = "mydb";
+$pwd = "mydb";//password should never be left blank on a live server.
 $db = "mydb";
 
 // Create connection

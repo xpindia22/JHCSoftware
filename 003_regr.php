@@ -1,9 +1,8 @@
 <?php
 // require 'css/table-co1.css';
 require 'header-jhcpl.php';
-//payments are added to index .php itself into user_info table
-//require 'authenticate.php';
 require_once 'conn.php';
+require_once 'auth.php';
 ?>
 
 
@@ -61,7 +60,6 @@ require_once 'conn.php';
  
 <?php
  
-
 // Sort by ID
 $sql = "SELECT * FROM user_info ORDER BY id DESC";
 $result = $conn->query($sql);
