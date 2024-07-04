@@ -3,7 +3,7 @@
 // require 'css/table-co1.css';
 require 'header-jhcpl.php';
 require_once 'conn.php';
-require_once './login/check_login.php';
+require_once 'check_login.php';
 // rest of the PHP code
 ?>
 

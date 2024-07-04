@@ -1,5 +1,5 @@
 <?php
-require_once './login/check_login.php';
+require_once 'check_login.php';
 require 'header-jhcpl.php';
 require_once 'conn.php'; // connect to the database.
 
