@@ -1,7 +1,6 @@
 <?php
-// logout.php
 session_start();
-session_destroy();
+unset($_SESSION['userid']);
 header('Location: login.php');
 exit;
 ?>

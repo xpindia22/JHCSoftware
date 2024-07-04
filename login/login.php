@@ -1,32 +1,33 @@
 <?php
-// login.php
-session_start();
+require_once '../conn.php';
 
-// Authenticate user credentials
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
+if (isset($_POST['userid']) && isset($_POST['password'])) {
+    $userid = $_POST['userid'];
     $password = $_POST['password'];
 
-    // Replace with your own authentication logic
-    if ($username == 'xxx' && $password == 'xxx') {
-        // Set session variable to indicate user is logged in
-        $_SESSION['logged_in'] = true;
-        // Redirect to protected area
-        header('Location: register.php');
-        exit;
+    $query = "SELECT * FROM users WHERE userid='$userid'";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        $user_data = $result->fetch_assoc();
+        if (password_verify($password, $user_data['password'])) {
+            $_SESSION['userid'] = $userid;
+            header('Location: ../001_register-pt.php');
+            exit;
+        } else {
+            echo 'Invalid password';
+        }
     } else {
-        $error = 'Invalid username or password';
+        echo 'User not found';
     }
 }
+
 ?>
 
-<!-- Login form -->
-<form action="login.php" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username"><br><br>
+<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <label for="userid">Username:</label>
+    <input type="text" id="userid" name="userid"><br><br>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password"><br><br>
     <input type="submit" value="Login">
 </form>
-
-<?php if (isset($error)) { echo $error; } ?>
