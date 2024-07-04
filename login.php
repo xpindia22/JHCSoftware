@@ -1,32 +1,41 @@
 <?php
-// login.php
-session_start();
+// Connect to database
+$conn = mysqli_connect("localhost", "mydb", "mydb", "mydb");
 
-// Authenticate user credentials
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-    // Replace with your own authentication logic
-    if ($username == 'xxx' && $password == 'xxx') {
-        // Set session variable to indicate user is logged in
-        $_SESSION['logged_in'] = true;
-        // Redirect to protected area
-        header('Location: register.php');
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userid = $_POST["userid"];
+    $password = md5($_POST["password"]);
+
+    // Query to check user credentials
+    $sql = "SELECT * FROM users WHERE userid = '$userid' AND password = '$password'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        // User authenticated, start session
+        session_start();
+        $_SESSION["loggedin"] = true;
+        $_SESSION["userid"] = $userid;
+        header("Location: protected_folder/index.php");
         exit;
     } else {
-        $error = 'Invalid username or password';
+        echo "Invalid username or password";
     }
 }
+
+mysqli_close($conn);
 ?>
 
 <!-- Login form -->
-<form action="login.php" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username"><br><br>
+<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+    <label for="userid">Username:</label>
+    <input type="text" id="userid" name="userid"><br><br>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password"><br><br>
     <input type="submit" value="Login">
 </form>
-
-<?php if (isset($error)) { echo $error; } ?>

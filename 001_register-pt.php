@@ -1,7 +1,7 @@
 <?php
 //require 'css/style.css';
  
-require_once 'auth.php';
+// require_once 'auth.php';
 // require_once 'pwd.php'; // connect to the database.
 require 'header-jhcpl.php';
 require_once 'conn.php'; // connect to the database.
