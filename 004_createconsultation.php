@@ -1,5 +1,5 @@
 <?php
-require_once 'check_login.php';
+require_once 'session_check.php';
 ?>
 
 <!DOCTYPE html>

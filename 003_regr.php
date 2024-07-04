@@ -1,9 +1,9 @@
 
 <?php
-// require 'css/table-co1.css';
+require_once 'session_check.php';
 require 'header-jhcpl.php';
 require_once 'conn.php';
-require_once 'check_login.php';
+ 
 // rest of the PHP code
 ?>
 
