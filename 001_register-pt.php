@@ -1,5 +1,19 @@
 <?php
-require_once 'check_login.php';
+session_start();
+require_once 'conn.php';
+
+if (!isset($_SESSION['userid'])) {
+    header('Location: login.php'); // redirect to login page if not logged in
+    exit;
+}
+// if logged in, continue executing the script
+?>
+
+
+
+
+<?php
+// require_once 'check_login.php';
 require 'header-jhcpl.php';
 require_once 'conn.php'; // connect to the database.
 
