@@ -1,3 +1,7 @@
+<?php
+require_once 'check_login.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +43,7 @@ if ($result->num_rows > 0) {
       echo "<option value='$unit_no'>$unit_no - $name</option>";
   }
   echo "</select>
-        <input type='submit' name='submit' value='Fetch Employee Records' />
+        <input type='submit' name='submit' value='Fetch Record.' />
         </form>";
 } else {
   echo "No unit_no found";
