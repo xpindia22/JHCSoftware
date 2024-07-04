@@ -20,7 +20,14 @@
         </style>
 </head>
 <body>
-<div class='container1'><center><span class='container3'>JAMES HEALTH CARE PRIVATE LIMITED. </span></div>
+<div class='container1'>
+    <center>
+        <span class='container3'>JAMES HEALTH CARE PRIVATE LIMITED. <?php echo "<a href='logout.php'>You are logged in as $userid, Logout</a>";?></a></span>
+    </center>
+</div>
+
+
+
  <div class='container2'><center>We Care We Treat God Heals... </center></div>
  <p>
 
