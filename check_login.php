@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_regenerate_id();
 require_once 'conn.php';
 
 if (!isset($_SESSION['userid'])) {
@@ -9,4 +10,4 @@ if (!isset($_SESSION['userid'])) {
 
 ?>
 
-<p><a href="?logout=1">Logout</a></p>
+<p><a href="logout.php">Logout</a></p>
