@@ -8,5 +8,6 @@ if (!isset($_SESSION['userid'])) {
     header('Location: login.php');
     exit;
 }
-echo"$userid <p><a href="logout.php">You are logged in as "$userid" , Logout</a></p>";
+
 ?>
+<p><a href="logout.php">You are logged in as "$userid" , Logout</a></p>

@@ -1,6 +1,5 @@
 <?php
 session_start(); // Start the session
-
 require_once 'conn.php';
 
 if (isset($_POST['userid']) && isset($_POST['password'])) {
