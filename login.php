@@ -1,7 +1,8 @@
 <?php
 session_start(); // Start the session
-
+require 'header-jhcpl.php';
 require_once 'conn.php';
+
 
 if (isset($_POST['userid']) && isset($_POST['password'])) {
     $userid = $_POST['userid'];
@@ -28,11 +29,16 @@ if (isset($_POST['userid']) && isset($_POST['password'])) {
 }
 
 ?>
+<html>
 
+
+    <body> 
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
     <label for="userid">Username:</label>
     <input type="text" id="userid" name="userid"><br><br>
     <label for="password">Password:</label>
     <input type="password" id="password" name="password"><br><br>
     <input type="submit" value="Login">
-</form>
+</form></body>
+</html
+>
