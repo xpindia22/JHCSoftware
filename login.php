@@ -30,7 +30,16 @@ if (isset($_POST['userid']) && isset($_POST['password'])) {
 
 ?>
 <html>
+<style>
+form{
+    width:300px;
+    margin:auto;
+    margin-top: 100px;
+    
+    
+}
 
+</style>
 
     <body> 
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
