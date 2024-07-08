@@ -121,6 +121,8 @@ echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
     <td><input type='text' id='doctor' name='doctor' value='Dr Robert James'></td>
     </tr>
 
+
+
     <th><label for='date'>Date:</label></th>
     <td><input type='date' id='date' name='date'></td>
     </tr>
