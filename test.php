@@ -76,8 +76,8 @@ if ($result3->num_rows > 0) {
         <option value=''>Select Doctor</option>";
   while ($row = $result3->fetch_assoc()) {
       $did = $row["did"];
-      $sql3 = "SELECT did,fname, lname FROM doctors WHERE did = '$did'";
-      $result3 = $conn->query($sql3);
+      $sql4 = "SELECT did,fname, lname FROM doctors WHERE did = '$did'";
+      $result4 = $conn->query($sql4);
       $did = $result3->fetch_assoc()["fname"];
       echo "<option value='$did'>$did - $fname, $lname</option>";
   }
@@ -145,7 +145,28 @@ echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
   <td>
     <select name='doctor'>
       <option value=''>Select Doctor</option>
-       
+      <?php
+       $sql3 = "SELECT did, fname, lname  FROM doctors ORDER BY did DESC";
+$result3 = $conn->query($sql3);
+
+if ($result3->num_rows > 0) {
+  echo "<form method='post' action=''>
+        <select name='did'>
+        <option value=''>Select Doctor</option>";
+  while ($row = $result3->fetch_assoc()) {
+      $did = $row["did"];
+      $sql4 = "SELECT did,fname, lname FROM doctors WHERE did = '$did'";
+      $result4 = $conn->query($sql4);
+      $did = $result3->fetch_assoc()["fname"];
+      echo "<option value='$did'>$did - $fname, $lname</option>";
+  }
+  echo "</select>
+        <input type='submit' name='submit' value='Fetch Doctor' />
+        </form>";
+} else {
+  echo "No did found";
+}
+?>
     </select>
   </td>
 </tr>
