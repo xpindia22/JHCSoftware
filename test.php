@@ -43,6 +43,7 @@ $age = ''; // Define $age here
 $sex = ''; // Define $sex here
 $mobile = ''; // Define $mobile here
 $diagnosis = ''; // Define $diagnosis here
+$doctor = ''; // Define $doctor here
 
 // Fetch all unit_no from the user_info table
 $sql = "SELECT DISTINCT unit_no  FROM user_info ORDER BY unit_no DESC";
@@ -60,7 +61,7 @@ if ($result->num_rows > 0) {
       echo "<option value='$unit_no'>$unit_no - $name</option>";
   }
   echo "</select>
-        <input type='submit' name='submit' value='Fetch Employee Records' />
+        <input type='submit' name='fetch_patient' value='Fetch Patient Records' />
         </form>";
 } else {
   echo "No unit_no found";
@@ -72,17 +73,16 @@ $result3 = $conn->query($sql3);
 
 if ($result3->num_rows > 0) {
   echo "<form method='post' action=''>
-        <select name='did'>
+        <select name='doctor'>
         <option value=''>Select Doctor</option>";
   while ($row = $result3->fetch_assoc()) {
       $did = $row["did"];
-      $sql4 = "SELECT did,fname, lname FROM doctors WHERE did = '$did'";
-      $result4 = $conn->query($sql4);
-      $did = $result3->fetch_assoc()["fname"];
-      echo "<option value='$did'>$did - $fname, $lname</option>";
+      $fname = $row["fname"];
+      $lname = $row["lname"];
+      echo "<option value='$did'>$fname $lname</option>";
   }
   echo "</select>
-        <input type='submit' name='submit' value='Fetch Doctor' />
+        <input type='submit' name='fetch_doctor' value='Fetch Doctor' />
         </form>";
 } else {
   echo "No did found";
@@ -90,7 +90,7 @@ if ($result3->num_rows > 0) {
 
  
 // If form is submitted, fetch records for the selected unit_no
-if (isset($_POST['submit'])) {
+if (isset($_POST['fetch_patient'])) {
   $unit_no = $_POST['unit_no_name'];
  
   // Fetch user info for the selected unit_no
@@ -107,9 +107,25 @@ if (isset($_POST['submit'])) {
   } else {
     echo "No user info found for unit_no: $unit_no";
   }
+  
 }
 
+// If form is submitted, fetch records for the selected doctor
+if (isset($_POST['fetch_doctor'])) {
+  $did = $_POST['doctor'];
  
+  // Fetch doctor info for the selected did
+  $sql3 = "SELECT fname, lname FROM doctors WHERE did = '$did'";
+  $result3 = $conn->query($sql3);
+
+  if ($result3->num_rows > 0) {
+    $doctors = $result3->fetch_assoc();
+    $doctor = $doctors['fname'] . ' ' . $doctors['lname'];
+  } else {
+    echo "No Doctor found!";
+  }
+} 
+
 
 // Display the "Add Consultation Visit" form regardless of previous visits
 echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
@@ -117,7 +133,7 @@ echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
 <table class='table'> <form method='post' action=''>
     <tr>
       <th><label for='unit_no'>Unit No:</label></th>
-      <td><input type='text' id='unit_no' name='unit_no' value='$unit_no' readonly></td>
+      <td><input type='text'id='unit_no' name='unit_no' value='$unit_no' readonly></td>
     </tr>
     <tr>
       <th><label for='name'>Name:</label></th>
@@ -140,36 +156,10 @@ echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
     <td><input type='text' id='diagnosis' name='diagnosis' value='$diagnosis'></td>
     </tr>
 
-<tr>
-  <th><label for='doctor'>Doctor:</label></th>
-  <td>
-    <select name='doctor'>
-      <option value=''>Select Doctor</option>
-      <?php
-       $sql3 = "SELECT did, fname, lname  FROM doctors ORDER BY did DESC";
-$result3 = $conn->query($sql3);
-
-if ($result3->num_rows > 0) {
-  echo "<form method='post' action=''>
-        <select name='did'>
-        <option value=''>Select Doctor</option>";
-  while ($row = $result3->fetch_assoc()) {
-      $did = $row["did"];
-      $sql4 = "SELECT did,fname, lname FROM doctors WHERE did = '$did'";
-      $result4 = $conn->query($sql4);
-      $did = $result3->fetch_assoc()["fname"];
-      echo "<option value='$did'>$did - $fname, $lname</option>";
-  }
-  echo "</select>
-        <input type='submit' name='submit' value='Fetch Doctor' />
-        </form>";
-} else {
-  echo "No did found";
-}
-?>
-    </select>
-  </td>
-</tr>
+     <tr>
+    <th><label for='doctor'>doctor:</label></th>
+    <td><input type='text' id='doctor' name='doctor' value='$doctor' readonly></td>
+    </tr>
     
     <th><label for='date'>Date:</label></th>
     <td><input type='date' id='date' name='date'></td>
@@ -187,14 +177,15 @@ if (isset($_POST['add'])) {
     $sex = $_POST['sex'];
     $mobile = $_POST['mobile'];
     $diagnosis = $_POST['diagnosis'];
+    $doctor = $_POST['doctor'];
     $date = $_POST['date'];
     
-    $sql = "INSERT INTO visits (name, unit_no, age, sex, mobile, diagnosis, date) VALUES ('$name', '$unit_no', '$age', '$sex', '$mobile', '$diagnosis', '$date')";
+    $sql = "INSERT INTO visits (name, unit_no, age, sex, mobile, diagnosis, doctor, date) VALUES ('$name', '$unit_no', '$age', '$sex', '$mobile', '$diagnosis', '$doctor', '$date')";
     if ($conn->query($sql) === TRUE) {
        echo "<br>Consultation Of Patient Mr/Ms  $name, Unit No: $unit_no On $date created successfully.</br>";
        //echo "<a href="https://www.example.com">Link text</a> ";
          } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: ". $sql. "<br>". $conn->error;
     }
 }
 $conn->close();
