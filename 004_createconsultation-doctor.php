@@ -116,13 +116,29 @@ echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
     <td><input type='text' id='diagnosis' name='diagnosis' value='$diagnosis'></td>
     </tr>
     
-    <tr>
-    <th><label for='doctor'>Consuting Doctor:</label></th>
-    <td><input type='text' id='doctor' name='doctor' value='Dr Robert James'></td>
-    </tr>
-
-
-
+<tr>
+  <th><label for='doctor'>Consuting Doctor:</label></th>
+  <td>
+    <select name='doctor'>
+      <option value=''>Select Doctor</option>
+      <?php
+      $sql = "SELECT did, fname, lname FROM doctors";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          $did = $row["did"];
+          $fname = $row["fname"];
+          $lname = $row["lname"];
+          echo "<option value='$did'>$fname $lname</option>";
+        }
+      } else {
+        echo "<option value=''>No doctors found</option>";
+      }
+     ?>
+    </select>
+  </td>
+</tr>
+    
     <th><label for='date'>Date:</label></th>
     <td><input type='date' id='date' name='date'></td>
     </tr>
