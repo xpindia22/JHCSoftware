@@ -21,7 +21,7 @@ require_once 'conn.php'; // connect to the database.
             background-color: #ffffff; /* Change this to your preferred odd row color */
         }
         .body-class{
-            margin: 50px;
+            margin: 25px;
         }
         input[type="text"]{
             color:blue;

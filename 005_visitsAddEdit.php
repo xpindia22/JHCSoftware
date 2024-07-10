@@ -1,5 +1,6 @@
 <?php
 require_once 'session_check.php';
+require 'header-jhcpl.php';
 ?>
 
 <!DOCTYPE html>
