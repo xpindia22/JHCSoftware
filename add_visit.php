@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_doctor'])) {
     $diagnosis = isset($_POST['diagnosis']) ? mysqli_real_escape_string($conn, $_POST['diagnosis']) : '';
     $doctor_id = isset($_POST['doctor']) ? mysqli_real_escape_string($conn, $_POST['doctor']) : '';
     $visit_date = isset($_POST['date']) ? mysqli_real_escape_string($conn, $_POST['date']) : '';
+    $date = isset($_POST['date']) ? mysqli_real_escape_string($conn, $_POST['date']) : '';
 
     // Fetch doctor's first and last names based on doctor_id
     $sql = "SELECT fname, lname FROM doctors WHERE doctor_id = '$doctor_id'";
@@ -34,8 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_doctor'])) {
     }
 
     // Insert into database
-    $sql = "INSERT INTO visits (name, unit_no, age, sex, mobile, diagnosis, doctor_id, doctor_fname, doctor_lname, visit_date) 
-            VALUES ('$name', '$unit_no', '$age', '$sex', '$mobile', '$diagnosis', '$doctor_id', '$doctor_fname', '$doctor_lname', '$visit_date')";
+    $sql = "INSERT INTO visits (name, unit_no, age, sex, mobile, diagnosis, doctor_id, doctor_fname, doctor_lname, visit_date, date) 
+            VALUES ('$name', '$unit_no', '$age', '$sex', '$mobile', '$diagnosis', '$doctor_id', '$doctor_fname', '$doctor_lname', '$visit_date', '$date')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Appointment for Patient: $name, created for Dr. $doctor_fname $doctor_lname ($doctor_id) on $visit_date";
