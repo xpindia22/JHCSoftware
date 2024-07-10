@@ -1,5 +1,5 @@
 <?php
-require_once 'session_check.php';
+require_once 'session_doctor.php';
 ?>
 
 <!DOCTYPE html>

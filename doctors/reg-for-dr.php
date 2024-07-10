@@ -1,6 +1,6 @@
 
 <?php
-require_once 'session_check.php';
+require_once 'session_doctor.php';
 // require 'header-jhcpl.php';
 require_once 'conn.php';
  
