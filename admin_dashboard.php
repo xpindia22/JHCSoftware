@@ -1,37 +1,91 @@
+<a href="add_visit.php">Add New Visit</a>
 <?php
 session_start();
-require_once 'session_check_admin.php'; // This file checks if the admin is logged in and fetches admin session details
+require_once 'session_admin.php'; // Include session check for admin
 require_once 'conn.php';
 
 // Fetch all doctors
 $sql = "SELECT doctor_id, fname, lname FROM doctors";
 $result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<h2>Select a doctor to view their dashboard</h2>
-    <form method='post' action='view_doctor_dashboard.php'>
-        <select name='doctor_id'>
-        <option value=''>Select doctor</option>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<option value='".$row['doctor_id']."'>".$row['fname']." ".$row['lname']."</option>";
-    }
-    echo "</select>
-        <input type='submit' value='View Dashboard'>
-    </form>";
-} else {
-    echo "No doctors found";
-}
-
-$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <style>
+        .container {
+            width: 600px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 8px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #f2f2f2;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #ddd;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#doctor_select').change(function() {
+                var doctor_id = $(this).val();
+                if (doctor_id) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'fetch_patients.php',
+                        data: {doctor_id: doctor_id},
+                        success: function(response) {
+                            $('#patient_list').html(response);
+                        }
+                    });
+                } else {
+                    $('#patient_list').html('');
+                }
+            });
+        });
+    </script>
 </head>
 <body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <form method="post" action="">
+            <div class="form-group">
+                <label for="doctor_select">Select Doctor</label>
+                <select id="doctor_select" name="doctor_id">
+                    <option value="">Select a doctor</option>
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row['doctor_id'] . "'>" . $row['fname'] . " " . $row['lname'] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+        </form>
+        <div id="patient_list">
+            <!-- Patient list will be displayed here -->
+        </div>
+    </div>
 </body>
 </html>
