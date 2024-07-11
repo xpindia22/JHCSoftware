@@ -32,7 +32,7 @@ require_once 'conn.php'; // connect to the database.
 <body class='body-class'>
  
     <h2>New Patient Registration</h2>
-    <form method="POST" action="002_regprocess.php">
+    <form method="POST" action="regprocess.php">
     <table> 
     <tbody>
     
