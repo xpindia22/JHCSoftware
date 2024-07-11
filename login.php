@@ -18,7 +18,7 @@ if (isset($_POST['userid']) && isset($_POST['password'])) {
         $user_data = $result->fetch_assoc();
         if (password_verify($password, $user_data['password'])) {
             $_SESSION['userid'] = $userid;
-            header('Location: 001_register-pt.php');
+            header('Location: 001_register.php');
             exit;
         } else {
             echo 'Invalid password';
