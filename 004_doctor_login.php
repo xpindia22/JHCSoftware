@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $doctor['password'])) {
             $_SESSION['doctor_id'] = $doctor['doctor_id'];
             $_SESSION['username'] = $doctor['username'];
-            header("Location: 005_doctor-session.php");
+            header("Location: 005_doctor_dashboard.php");
             exit;
         } else {
             echo "Invalid password.";

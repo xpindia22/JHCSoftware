@@ -4,7 +4,7 @@ session_start();
 // Check if the doctor is logged in
 if (!isset($_SESSION['doctor_id']) || !isset($_SESSION['doctor_fname']) || !isset($_SESSION['doctor_lname'])) {
     // Redirect to login page if not logged in
-    header("Location: 005_doctor_login.php");
+    header("Location: 004_doctor_login.php");
     exit();
 }
 
