@@ -1,8 +1,6 @@
 <?php
-// require_once 'session_check.php';
 require_once 'session_doctor.php';
 require 'header-jhcpl-doctor.php';
-
 ?>
 
 <!DOCTYPE html>
