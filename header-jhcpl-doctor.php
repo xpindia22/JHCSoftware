@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +23,11 @@
 <body>
 <div class='container1'>
     <center>
-        <span class='container3'>JAMES HEALTH CARE PRIVATE LIMITED. <a href='logout.php' style='float: right;'>You are logged in as $userid, Logout</a></span>
+        <span class='container3'>JAMES HEALTH CARE PRIVATE LIMITED.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <?php echo "<a href='logout-doctor.php'>You are logged in as Dr. $doctor_fname $doctor_lname, Logout Doctor</a>";?></span>
     </center>
 </div>
-</span>
-    </center>
-</div>
+
+
 
 
 
