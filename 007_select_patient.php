@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
 // Display the "Add Consultation Visit" form regardless of previous visits
 echo "<h2>Add Revisit Consultation for unit_no: $unit_no </h2>
   
-<table class='table'> <form method='post' action='007_select_doctor.php'>
+<table class='table'> <form method='post' action='008_select_doctor.php'>
     <tr>
       <th><label for='unit_no'>Unit No:</label></th>
       <td><input type='text' id='unit_no' name='unit_no' value='$unit_no' readonly></td>
