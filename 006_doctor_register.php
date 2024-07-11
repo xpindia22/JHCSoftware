@@ -1,3 +1,4 @@
+<h2> Doctor Registration Form</h2>
 <?php
 require_once 'conn.php';
 
