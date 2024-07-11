@@ -1,4 +1,3 @@
-<a href="add_visit.php">Add New Visit</a>
 <?php
 session_start();
 require_once 'session_admin.php'; // Include session check for admin
@@ -16,29 +15,36 @@ $result = $conn->query($sql);
     <title>Admin Dashboard</title>
     <style>
         .container {
-            width: 600px;
+            width: 80%;
+            max-width: 1200px;
             margin: 0 auto;
             padding-top: 50px;
+            font-family: Arial, sans-serif;
         }
         .form-group {
             margin-bottom: 15px;
         }
         .form-group label {
             display: block;
+            margin-bottom: 5px;
         }
         .form-group select, .form-group input {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         table {
-            border-collapse: collapse;
             width: 100%;
+            border-collapse: collapse;
             background-color: #f2f2f2;
             margin-top: 20px;
         }
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
+            text-align: left;
         }
         tr:nth-child(even) {
             background-color: #ddd;
