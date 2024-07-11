@@ -1,0 +1,83 @@
+<style>
+  
+.body-margin50px{
+            margin: 50px;
+        }
+
+.body-margin1percent{
+          mar
+          gin: 10%;
+      }
+      
+.div-bglightblue{
+  background-color:aliceblue;
+  
+}
+.text-green{
+  color:rgb(7, 85, 7);
+}
+.text-yellow{
+  color:yellow;
+}
+.text-yellowgreen{
+  color:yellowgreen;
+}
+.text-red{
+  color:red;
+}
+.text-blue{
+  color:blue;
+}
+
+.bg-black{
+  background-color: black;
+}
+
+.bg-lightblue{
+  background-color:#add8e6;
+}
+
+.bg-lightgrey{
+  background-color:lightgray;
+}
+.padding8px{
+  padding:8px;
+}
+.padding10px{
+  padding:10px;
+}
+.padding20px{
+  padding:20px;
+}
+
+.width50{
+  width: 50%;
+}
+
+
+.width100{
+  width: 100%;
+}
+
+.bg-black{
+
+}
+
+.border-collapse {
+  border-collapse: collapse;
+ 
+ }
+.border-spacing{
+  border-spacing1px;
+}
+
+
+ 
+/* th, td {
+  border: 1px solid #ddd; /* light gray */
+   padding: 8px;
+  background-color: #add8e6; /* light blue */
+} */
+
+
+</style>
