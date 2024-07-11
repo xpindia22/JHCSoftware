@@ -1,0 +1,225 @@
+Array
+(
+    [name] => sdfsdf
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => Tom
+    [age] => 44
+    [sex] => Male
+    [diagnosis] => DM
+    [date] => 2024-04-03
+    [notes] => COPD
+)
+Array
+(
+    [name] => Jake
+    [age] => 22
+    [sex] => Female
+    [diagnosis] => COPD
+    [date] => 2024-04-03
+    [notes] => COPD
+)
+Array
+(
+    [name] => Tom
+    [age] => 44
+    [sex] => Female
+    [diagnosis] => DO
+    [date] => 2024-04-03
+    [notes] => DDD
+)
+Array
+(
+    [name] => sdff
+    [age] => sdfs
+    [sex] => sdfs
+    [diagnosis] => sdfs
+    [date] => 
+    [notes] => sdf
+)
+Array
+(
+    [name] => sdff
+    [age] => sdfs
+    [sex] => sdfs
+    [diagnosis] => sdfs
+    [date] => 
+    [notes] => sdf
+)
+Array
+(
+    [name] => xvxv
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => xvxv
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => dfd
+    [age] => sdfs
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => z
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => z
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => z
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => z
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => z
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
+Array
+(
+    [name] => fff
+    [age] => 
+    [sex] => 
+    [diagnosis] => 
+    [date] => 
+    [notes] => 
+)
