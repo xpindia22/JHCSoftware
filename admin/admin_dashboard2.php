@@ -1,7 +1,7 @@
 <?php
 // admin_dashboard.php
 
-require_once 'conn.php';
+require_once './config/conn.php'; // connect to the database.
 
 // Query to get visit details
 $sql = "SELECT id, name, doctor_fname, visit_date FROM visits";

@@ -1,6 +1,5 @@
 <?php
-require_once '../conn.php';
-
+require_once './config/conn.php'; // connect to the database.
 if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['userid']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['mobile'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];

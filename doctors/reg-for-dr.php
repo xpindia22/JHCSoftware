@@ -2,8 +2,7 @@
 <?php
 require_once 'session_doctor.php';
 // require 'header-jhcpl.php';
-require_once 'conn.php';
- 
+require_once './config/conn.php'; // connect to the database. 
 // rest of the PHP code
 ?>
 

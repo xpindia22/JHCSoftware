@@ -26,7 +26,7 @@ tr:nth-child(even) {
 <body style='margin: 50px;'>
 
 <?php
-require_once 'conn.php';
+require_once './config/conn.php'; // connect to the database.
 
 // Fetch the logged-in doctor's ID from the session
 $doctor_id = $_SESSION['doctor_id'];

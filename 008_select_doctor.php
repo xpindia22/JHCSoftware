@@ -1,6 +1,6 @@
 <?php
 require_once 'session_check.php';
-require_once 'conn.php';
+require_once './config/conn.php'; // connect to the database.
 
 // Fetch patient details from POST data
 $unit_no = $_POST['unit_no'];

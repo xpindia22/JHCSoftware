@@ -3,7 +3,7 @@
 // - git push origin bkup:main
 
 require 'header-jhcpl.php';//Header logo file
-require_once 'conn.php'; // connect to the database.
+require_once './config/conn.php'; // connect to the database.
 
 $name = $_POST['name'];
 $age = $_POST['age'];

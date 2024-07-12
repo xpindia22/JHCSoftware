@@ -26,7 +26,7 @@ tr:nth-child(even) {
 <body style='margin: 50px;'>
 
 <?php
-require_once 'conn.php';
+require_once './config/conn.php'; // connect to the database.
 
 // Fetch all unit_no from the user_info table
 $sql = "SELECT DISTINCT unit_no  FROM user_info ORDER BY unit_no DESC";

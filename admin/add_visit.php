@@ -1,6 +1,6 @@
 <?php
 require_once 'session_admin.php'; // Include session check for admin
-require_once 'conn.php';
+require_once './config/conn.php'; // connect to the database.
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
