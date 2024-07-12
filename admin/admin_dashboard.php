@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'session_admin.php'; // Include session check for admin
+require_once '../config/session_admin.php'; // Include session check for admin
+// require_once '../config/session_doctor.php'; // Include session check for admin
 require_once '../config/conn.php'; // connect to the database.
 
 // Fetch all doctors
