@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once '../config/conn.php'; // connect to the database.
+require_once 'conn.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);

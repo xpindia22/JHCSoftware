@@ -1,8 +1,9 @@
 
 <?php
-require_once 'session_doctor.php';
-// require 'header-jhcpl.php';
-require_once '../config/conn.php'; // connect to the database. 
+require_once '../config/session_check.php';
+require '../header-jhcpl.php';
+require_once '../config/conn.php'; // connect to the database.
+ 
 // rest of the PHP code
 ?>
 
@@ -61,9 +62,7 @@ require_once '../config/conn.php'; // connect to the database.
 <?php
  
 // Sort by ID
-// $sql = "SELECT * FROM visits ORDER BY doctor_id DESC";
-$sql = "SELECT * FROM visits where doctor_id =2";
-
+$sql = "SELECT * FROM user_info ORDER BY id DESC";
 $result = $conn->query($sql);
 
 $grand_total_consultation = 0;
@@ -81,7 +80,16 @@ if ($result->num_rows > 0) {
     echo "<tr><th>ID</th><th>Name</th><th>Age</th><th>Sex</th><th>Unit No</th><th>Diagnosis</th><th>Date</th><th>Mobile</th><th>Address</th><th>Notes<th>Consultation</th><th>ECG</th><th>ECHO</th><th>MEDICINES</th><th>LAB</th><th>Total</th></tr>";
 
     while ($row = $result->fetch_assoc()) {
- 
+        // Calculate row-wise total
+        $row_total = $row['consultation'] + $row['ecg'] + $row['echo'] + $row['medicines'] + $row['lab'];
+
+        // Add to grand totals
+        $grand_total_consultation += $row['consultation'];
+        $grand_total_ecg += $row['ecg'];
+        $grand_total_echo += $row['echo'];
+        $grand_total_medicines += $row['medicines'];
+        $grand_total_lab += $row['lab'];
+        $grand_total += $row_total;
 
         // Start row
         echo "<tr style='border: 1px solid black;'>";
@@ -99,23 +107,27 @@ if ($result->num_rows > 0) {
         echo "<td style='border: 1px solid black;'>" . $row['mobile'] . "</td>";
         echo "<td style='border: 1px solid black;'>" . $row['address'] . "</td>";
         echo "<td style='border: 1px solid black;'>" . $row['notes'] . "</td>";
- 
-    
+        echo "<td style='border: 1px solid black;'>" . $row['consultation'] . "</td>";
+        echo "<td style='border: 1px solid black;'>" . $row['ecg'] . "</td>";
+        echo "<td style='border: 1px solid black;'>" . $row['echo'] . "</td>";
+        echo "<td style='border: 1px solid black;'>" . $row['medicines'] . "</td>";
+        echo "<td style='border: 1px solid black;'>" . $row['lab'] . "</td>";
+        echo "<td style='border: 1px solid black;'>" . $row_total . "</td>"; // Print row-wise total
 
         // End row
         echo "</tr>";
     }
 
-    // // Print grand totals row
-    // echo "<tr style='border: 1px solid black;'>";
-    // echo "<td colspan='10' style='border: 1px solid black;'><b>Grand Total</b></td>";
-    // echo "<td style='border: 1px solid black;'>" . $grand_total_consultation . "</td>";
-    // echo "<td style='border: 1px solid black;'>" . $grand_total_ecg . "</td>";
-    // echo "<td style='border: 1px solid black;'>" . $grand_total_echo . "</td>";
-    // echo "<td style='border: 1px solid black;'>" . $grand_total_medicines . "</td>";
-    // echo "<td style='border: 1px solid black;'>" . $grand_total_lab . "</td>";
-    // echo "<td style='border: 1px solid black;'>" . $grand_total . "</td>"; // Print grand total
-    // echo "</tr>";
+    // Print grand totals row
+    echo "<tr style='border: 1px solid black;'>";
+    echo "<td colspan='10' style='border: 1px solid black;'><b>Grand Total</b></td>";
+    echo "<td style='border: 1px solid black;'>" . $grand_total_consultation . "</td>";
+    echo "<td style='border: 1px solid black;'>" . $grand_total_ecg . "</td>";
+    echo "<td style='border: 1px solid black;'>" . $grand_total_echo . "</td>";
+    echo "<td style='border: 1px solid black;'>" . $grand_total_medicines . "</td>";
+    echo "<td style='border: 1px solid black;'>" . $grand_total_lab . "</td>";
+    echo "<td style='border: 1px solid black;'>" . $grand_total . "</td>"; // Print grand total
+    echo "</tr>";
     
     // End table
     echo "</table>";

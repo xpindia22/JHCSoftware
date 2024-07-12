@@ -1,8 +1,5 @@
 <?php
-require_once '../config/session_doctor.php';
-require 'header-jhcpl-doctor.php';
-require_once '../config/conn.php'; // connect to the database.
-
+require_once 'session_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +25,12 @@ tr:nth-child(even) {
 <body style='margin: 50px;'>
 
 <?php
+require_once 'conn.php';
 
-// Fetch the logged-in doctor's ID from the session
-$doctor_id = $_SESSION['doctor_id'];
-
-// Fetch all unit_no from the user_info table assigned to the logged-in doctor
-$sql = "SELECT DISTINCT unit_no FROM visits WHERE doctor_id = '$doctor_id' ORDER BY unit_no DESC";
+// Fetch all unit_no from the user_info table
+$sql = "SELECT DISTINCT unit_no  FROM user_info ORDER BY unit_no DESC";
 $result = $conn->query($sql);
-
+ 
 if ($result->num_rows > 0) {
   echo "<form method='post' action=''>
         <select name='unit_no_name'>
@@ -54,16 +49,16 @@ if ($result->num_rows > 0) {
   echo "No unit_no found";
 }
 
+
+ 
 // If form is submitted, fetch records for the selected unit_no
 if (isset($_POST['submit'])) {
   $unit_no = $_POST['unit_no_name'];
-  $sql = "SELECT id, name, unit_no, age, sex, doctor_fname, doctor_lname, mobile, diagnosis, visit_date, cc, hpi, pmh, obg, exam, treatment, medicines, lab, notes 
-          FROM visits 
-          WHERE unit_no = '$unit_no' AND doctor_id = '$doctor_id' 
-          ORDER BY id ASC";
+  $sql = "SELECT id, name, unit_no, age, sex,doctor_fname,doctor_lname, mobile, diagnosis, date, cc, hpi, pmh, obg, exam, treatment, medicines, lab, notes FROM visits WHERE unit_no = '$unit_no' ORDER BY id ASC";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
+    
     echo "<h2>Unit No: $unit_no Personal Information.</h2>
     <table>
     <tr>
@@ -88,8 +83,9 @@ if (isset($_POST['submit'])) {
       <td>".$row["sex"]."</td>
       <td>".$row["mobile"]."</td>
       <td>".$row["diagnosis"]."</td>
-      <td>".$row["visit_date"]."</td>
+      <td>".$row["date"]."</td>
       </tr>";
+ 
     }
     echo "</table>";
 
@@ -109,7 +105,7 @@ if (isset($_POST['submit'])) {
   </style>
       <table>
         
-      <tr><th>Visit ID No:</th><td>".$row["id"].", <b>Visit Date</b> ".$row["visit_date"]."</td></tr>
+      <tr><th>Visit ID No:</th><td>".$row["id"].", <b>Visit Date</b> ".$row["date"]."</td></tr>
         <tr><th>Chief Complaint</th><td>".$row["cc"]."</td></tr>
         <tr><th>History Of Present Illness</th><td>".$row["hpi"]."</td></tr>
         <tr><th>Past Medical History</th><td>".$row["pmh"]."</td></tr>
@@ -121,11 +117,33 @@ if (isset($_POST['submit'])) {
         <tr><th>Notes</th><td>".$row["notes"]."</td></tr>
         <tr><td colspan='2'>&nbsp;</td></tr> <!-- This is the empty row -->
         </align>
+
       </table>";
     }
+    
   } else {
-    echo "No records found for unit_no: $unit_no";
-  }
+    
+     echo "No records found for unit_no: $unit_no  <p><br>
+     <a href='004_createconsultation.php'>Click Here To Create A New Record or Revist</a>";
+   }
+}
+
+if (isset($_POST['add'])) {
+    
+    $unit_no = $_POST['unit_no'];
+    $name = $_POST['name'];
+    $age = $_POST['age'];
+    $sex = $_POST['sex'];
+    $mobile = $_POST['mobile'];
+    $diagnosis = $_POST['diagnosis'];
+    $date = $_POST['date'];
+    
+    $sql = "INSERT INTO visits (name,unit_no, age, sex, mobile, diagnosis, date) VALUES ('$name','$unit_no', '$age', '$sex','$mobile', '$diagnosis', '$date')";
+    if ($conn->query($sql) === TRUE) {
+        echo "New Consultation Record Of Unit No: $unit_no On $date created successfully";
+        } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 
 $conn->close();

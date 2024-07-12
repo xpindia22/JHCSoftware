@@ -1,5 +1,6 @@
 <?php
-require_once '../config/conn.php'; // connect to the database.
+require_once 'conn.php';
+
 if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['userid']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['mobile'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -21,7 +22,7 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['userid']) 
 }
 
 ?>
-
+<html><body>
 <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
     <label for="fname">First Name:</label>
     <input type="text" id="fname" name="fname"><br><br>
@@ -37,3 +38,5 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['userid']) 
     <input type="tel" id="mobile" name="mobile"><br><br>
     <input type="submit" value="Register">
 </form>
+</body>
+</html>

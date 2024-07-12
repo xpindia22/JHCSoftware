@@ -1,6 +1,7 @@
 <?php
-require_once 'session_doctor.php';
-require_once '../config/conn.php'; // connect to the database.
+require_once 'session_check.php';
+require_once 'conn.php';
+
 // Fetch doctor ID from session
 $doctor_id = $_SESSION['doctor_id'];
 
