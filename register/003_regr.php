@@ -1,7 +1,7 @@
 
 <?php
 require_once '../config/session_check.php';
-require 'header-jhcpl.php';
+require '../header-jhcpl.php';
 require_once '../config/conn.php'; // connect to the database.
  
 // rest of the PHP code

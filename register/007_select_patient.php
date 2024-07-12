@@ -1,5 +1,7 @@
 <?php
 require_once '../config/session_check.php';
+require '../header-jhcpl.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +35,6 @@ tr:nth-child(even) {
 <body class='body-class'>
 
 <?php
-require 'header-jhcpl.php';
 require_once '../config/conn.php'; // connect to the database.
 
 $unit_no = ''; 

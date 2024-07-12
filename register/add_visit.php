@@ -2,8 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once 'session_check.php';
-require_once './config/conn.php'; // connect to the database.
+require_once '../config/session_check.php';
+require_once '../config/conn.php'; // connect to the database.
 
 // Initialize variables
 $unit_no = $name = $age = $sex = $mobile = $diagnosis = $doctor_id = $doctor_fname = $doctor_lname = $visit_date = "";
