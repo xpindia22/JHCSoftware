@@ -34,7 +34,7 @@ tr:nth-child(even) {
 
 <?php
 require 'header-jhcpl.php';
-require_once 'conn.php';
+require_once './config/conn.php'; // connect to the database.
 
 $unit_no = ''; 
 $name = ''; 

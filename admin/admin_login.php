@@ -1,6 +1,10 @@
 <?php
 session_start();
+<<<<<<< HEAD
 require_once 'conn.php';
+=======
+require_once './config/conn.php'; // connect to the database.
+>>>>>>> work
 
 // Check if the admin is already logged in
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {

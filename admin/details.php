@@ -1,7 +1,3 @@
-<?php
-require_once 'session_doctor.php';
-require_once 'header-jhcpl-doctor.php';
-?>
 <!DOCTYPE html>
 <html>
 <head>

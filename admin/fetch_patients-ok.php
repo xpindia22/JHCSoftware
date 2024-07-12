@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 require_once 'conn.php';
+=======
+require_once './config/conn.php'; // connect to the database.
+>>>>>>> work
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $doctor_id = $_POST['doctor_id'];

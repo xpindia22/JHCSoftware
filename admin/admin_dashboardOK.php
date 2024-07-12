@@ -1,11 +1,7 @@
 <?php
 session_start();
 require_once 'session_admin.php'; // Include session check for admin
-<<<<<<< HEAD
-require_once 'conn.php';
-=======
 require_once './config/conn.php'; // connect to the database.
->>>>>>> work
 
 // Fetch all doctors
 $sql = "SELECT doctor_id, fname, lname FROM doctors";
