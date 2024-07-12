@@ -1,5 +1,5 @@
 <?php
-require_once './config/conn.php'; // connect to the database.
+require_once '../config/conn.php'; // connect to the database.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Get doctor's information from the registration form
   $username = $_POST['username'];

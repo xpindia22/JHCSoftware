@@ -1,6 +1,6 @@
 <?php
-// require_once 'session_check.php';
 require_once 'session_doctor.php';
+require 'header-jhcpl-doctor.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,8 @@ tr:nth-child(even) {
 <body style='margin: 50px;'>
 
 <?php
-require_once '../config/conn.php'; // connect to the database.
+require_once './config/conn.php'; // connect to the database.
+
 // Fetch the logged-in doctor's ID from the session
 $doctor_id = $_SESSION['doctor_id'];
 

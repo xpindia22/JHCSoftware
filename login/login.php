@@ -1,5 +1,5 @@
 <?php
-require_once './config/conn.php'; // connect to the database.
+require_once '../config/conn.php'; // connect to the database.
 if (isset($_POST['userid']) && isset($_POST['password'])) {
     $userid = $_POST['userid'];
     $password = $_POST['password'];
