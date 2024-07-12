@@ -1,7 +1,7 @@
 <?php
 session_start(); // Start the session
-require 'header-jhcpl.php';
-require_once './config/conn.php'; // connect to the database.
+require '../header-jhcpl.php';
+require_once '../config/conn.php'; // connect to the database.
 
 
 if (isset($_POST['userid']) && isset($_POST['password'])) {
