@@ -16,11 +16,11 @@ $result = $conn->query($sql);
     <title>Admin Dashboard</title>
     <style>
         .container {
-            width: 80%;
+            /* width: 80%;
             max-width: 1200px;
             margin: 0 auto;
             padding-top: 50px;
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif; */
         }
         .form-group {
             margin-bottom: 15px;
