@@ -14,9 +14,7 @@ if ($result->num_rows > 0) {
         echo "<tr>";
         echo "<td><a href='details.php?id=" . $row["id"] . "'>" . $row["id"] . "</a></td>";
         echo "<td>" . $row["name"] . "</td>";
-        <td>".$row["doctor_fname"]." ".$row["doctor_lname"]."</td>
-
-        // echo "<td>" . $row["doctor_fname"] . "</td>";
+        echo "<td>" . $row["doctor_fname"] . " " . $row["doctor_lname"] . "</td>";
         echo "<td>" . $row["visit_date"] . "</td>";
         echo "</tr>";
     }
