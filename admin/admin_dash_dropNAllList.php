@@ -1,9 +1,8 @@
 <?php
 session_start();
 require_once '../config/session_admin.php'; // Include session check for admin
-// require_once '../config/session_doctor.php'; // Include session check for admin
 require_once '../config/conn.php'; // connect to the database.
-
+// require_once '../css/table.css';
 // Fetch all doctors
 $sql = "SELECT doctor_id, fname, lname FROM doctors";
 $result = $conn->query($sql);
@@ -16,11 +15,11 @@ $result = $conn->query($sql);
     <title>Admin Dashboard</title>
     <style>
         .container {
-            width: 80%;
+            /* width: 80%;
             max-width: 1200px;
-            margin: 0 auto;
+            margin:  auto;
             padding-top: 50px;
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif; */
         }
         .form-group {
             margin-bottom: 15px;
@@ -81,6 +80,7 @@ $result = $conn->query($sql);
                 <select id="doctor_select" name="doctor_id">
                     <option value="">Select a doctor</option>
                     <?php
+                    
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo "<option value='" . $row['doctor_id'] . "'>" . $row['fname'] . " " . $row['lname'] . "</option>";
