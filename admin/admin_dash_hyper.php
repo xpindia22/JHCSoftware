@@ -4,7 +4,7 @@
 require_once '../config/conn.php'; // connect to the database.
 
 // Query to get visit details
-$sql = "SELECT id, name, doctor_fname, visit_date FROM visits";
+$sql = "SELECT id, name, doctor_fname, doctor_lname, visit_date FROM visits";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -14,7 +14,9 @@ if ($result->num_rows > 0) {
         echo "<tr>";
         echo "<td><a href='details.php?id=" . $row["id"] . "'>" . $row["id"] . "</a></td>";
         echo "<td>" . $row["name"] . "</td>";
-        echo "<td>" . $row["doctor_fname"] . "</td>";
+        <td>".$row["doctor_fname"]." ".$row["doctor_lname"]."</td>
+
+        // echo "<td>" . $row["doctor_fname"] . "</td>";
         echo "<td>" . $row["visit_date"] . "</td>";
         echo "</tr>";
     }
