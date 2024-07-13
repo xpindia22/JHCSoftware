@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../config/session_admin.php'; // Include session check for admin
-require_once 'header-jhcpl-doctor.php';
+require_once 'header_admin.php';
 require_once '../config/conn.php'; // connect to the database.
 // require_once '../css/table.css';
 // Fetch all doctors
