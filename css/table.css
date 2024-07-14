@@ -14,9 +14,9 @@ margin:50px;/*  left align margin  */
 
 
 table {
-    width: 50%;
+    width: 100%;
     border-collapse: collapse;
-    /* border: 2px solid rgb(126, 11, 11); Style for red margin around table */
+    
     margin: 50px ;
     table-layout: fixed; Add this line*/
     font-family: Arial, Helvetica, sans-serif;

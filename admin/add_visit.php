@@ -38,8 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
     <title>Add Visit</title>
+    
 </head>
+
 <body>
     <h2>Add Visit</h2>
     <form method="post" action="">

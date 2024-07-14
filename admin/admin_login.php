@@ -1,10 +1,18 @@
 <?php
 session_start();
 require_once '../config/conn.php'; // connect to the database.
+<<<<<<< HEAD
+=======
+
+// Capture the referring page before processing the form
+if (!isset($_SESSION['referer']) && isset($_SERVER['HTTP_REFERER']) && !strpos($_SERVER['HTTP_REFERER'], 'admin_login.php')) {
+    $_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
+}
+>>>>>>> 016c17eb434cb318dcaf672fc0c6f8ee90c6299d
 
 // Check if the admin is already logged in
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-    header("Location: admin_dashboard.php");
+    header("Location: " . (isset($_SESSION['referer']) ? $_SESSION['referer'] : 'admin_dashboard.php'));
     exit();
 }
 
@@ -21,7 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($admin_password, $admin['password'])) {
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_username'] = $admin['username'];
-            header("Location: admin_dashboard.php");
+
+            // Redirect to the referer page or the admin dashboard if no referer is set
+            $redirect_url = isset($_SESSION['referer']) ? $_SESSION['referer'] : 'admin_dashboard.php';
+            unset($_SESSION['referer']);
+            header("Location: $redirect_url");
             exit;
         } else {
             echo "Invalid admin password.";
