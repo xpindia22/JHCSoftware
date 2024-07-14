@@ -21,7 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($admin_password, $admin['password'])) {
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_username'] = $admin['username'];
-            header("Location: admin_dashboard.php");
+            // header("Location: admin_dashboard.php");
+            header("Location: {$_SERVER['HTTP_REFERER']}");
+
             exit;
         } else {
             echo "Invalid admin password.";
