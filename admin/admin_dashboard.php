@@ -1,15 +1,9 @@
 <?php
 session_start();
 require_once '../config/session_admin.php'; // Include session check for admin
-<<<<<<< HEAD
-// require_once '../config/session_doctor.php'; // Include session check for admin
-require_once '../config/conn.php'; // connect to the database.
-
-=======
 require_once 'header_admin.php';
 require_once '../config/conn.php'; // connect to the database.
 // require_once '../css/table.css';
->>>>>>> 016c17eb434cb318dcaf672fc0c6f8ee90c6299d
 // Fetch all doctors
 $sql = "SELECT doctor_id, fname, lname FROM doctors";
 $result = $conn->query($sql);
@@ -107,9 +101,6 @@ $result = $conn->query($sql);
     
 </body>
 </html>
-<<<<<<< HEAD
- 
-=======
 <?php
 // admin_dashboard.php
 
@@ -137,4 +128,3 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
->>>>>>> 016c17eb434cb318dcaf672fc0c6f8ee90c6299d
