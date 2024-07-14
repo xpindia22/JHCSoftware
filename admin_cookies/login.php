@@ -1,12 +1,12 @@
 <?php
 session_start();
-require_once 'conn.php';
+require_once 'conn.php'; // Include your database connection file
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     
-    $sql = "SELECT userid, username, password, department, email, phone FROM users WHERE username = '$username'";
+    $sql = "SELECT userid, username, password FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
@@ -18,26 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             setcookie("userid", $user['userid'], time() + (86400 * 30), "/");
             setcookie("username", $user['username'], time() + (86400 * 30), "/");
             
-            // Capture login details
-            $browser_used = $_SERVER['HTTP_USER_AGENT'];
-            $ip_address = $_SERVER['REMOTE_ADDR'];
-            $mac_address = exec('getmac');
-            $mac_address = strtok($mac_address, ' ');
-            
-            // Insert login attempt
-            $sql = "INSERT INTO login_attempts (userid, username, department, email, phone, browser_used, ip_address, mac_address) VALUES ('" . $user['userid'] . "', '" . $user['username'] . "', '" . $user['department'] . "', '" . $user['email'] . "', '" . $user['phone'] . "', '$browser_used', '$ip_address', '$mac_address')";
-            $conn->query($sql);
-            
+            // Redirect to dashboard
             header("Location: dashboard.php");
-            exit;
+            exit();
         } else {
-            echo "Invalid password.";
+            $error_message = "Invalid password.";
         }
     } else {
-        echo "No user found with that username.";
+        $error_message = "No user found with that username.";
     }
 }
-
 $conn->close();
 ?>
 
@@ -49,6 +39,9 @@ $conn->close();
 </head>
 <body>
     <h2>Login</h2>
+    <?php if (!empty($error_message)) : ?>
+        <p style="color: red;"><?php echo $error_message; ?></p>
+    <?php endif; ?>
     <form method="post" action="">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
