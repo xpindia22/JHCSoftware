@@ -2,19 +2,20 @@
 session_start();
 require_once '../config/conn.php'; // connect to the database.
 
-// Check if the admin is already logged in
-if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-    header("Location: admin_dashboard.php");
-    exit();
+// Capture the referring page before processing the form
+if (!isset($_SESSION['referer']) && isset($_SERVER['HTTP_REFERER']) && !strpos($_SERVER['HTTP_REFERER'], 'admin_login.php')) {
+    $_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
 }
 
-// Capture the referring page before processing the form
-$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'admin_dashboard.php';
+// Check if the admin is already logged in
+if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+    header("Location: " . (isset($_SESSION['referer']) ? $_SESSION['referer'] : 'admin_dashboard.php'));
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_username = mysqli_real_escape_string($conn, $_POST['admin_username']);
     $admin_password = mysqli_real_escape_string($conn, $_POST['admin_password']);
-    $referer = mysqli_real_escape_string($conn, $_POST['referer']); // Get the referer from the form
 
     // Verify admin credentials
     $admin_sql = "SELECT * FROM admin WHERE username = '$admin_username'";
@@ -25,8 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($admin_password, $admin['password'])) {
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_username'] = $admin['username'];
-            // Redirect to the referer page
-            header("Location: $referer");
+
+            // Redirect to the referer page or the admin dashboard if no referer is set
+            $redirect_url = isset($_SESSION['referer']) ? $_SESSION['referer'] : 'admin_dashboard.php';
+            unset($_SESSION['referer']);
+            header("Location: $redirect_url");
             exit;
         } else {
             echo "Invalid admin password.";
@@ -53,7 +57,6 @@ $conn->close();
         <input type="text" id="admin_username" name="admin_username" required><br><br>
         <label for="admin_password">Password:</label>
         <input type="password" id="admin_password" name="admin_password" required><br><br>
-        <input type="hidden" name="referer" value="<?php echo htmlspecialchars($referer); ?>"> <!-- Hidden input to store referer -->
         <input type="submit" value="Login">
     </form>
 </body>
