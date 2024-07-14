@@ -27,7 +27,7 @@ textarea {
 
 <?php
 require_once '../config/conn.php'; // connect to the database.
-
+require_once 'header_admin.php';
 // Fetch the id from the URL
 $id = $_GET['id'];
 
