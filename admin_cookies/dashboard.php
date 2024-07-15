@@ -15,5 +15,6 @@ echo "Your User ID is: " . htmlspecialchars($userid) . ".";
 <body>
     <h2>Dashboard</h2>
     <p>Welcome to your dashboard, <?php echo htmlspecialchars($username); ?>.</p>
+    <p><a href="logout.php">Logout</a></p>
 </body>
 </html>
