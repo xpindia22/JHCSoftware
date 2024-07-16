@@ -1,3 +1,4 @@
+
 <?php
 require_once 'session_user.php'; // Include session check
 
@@ -5,7 +6,6 @@ require_once 'session_user.php'; // Include session check
 echo "Welcome, " . htmlspecialchars($username) . "!<br>";
 echo "Your User ID is: " . htmlspecialchars($userid) . ".";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
