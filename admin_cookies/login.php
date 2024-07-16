@@ -1,54 +1,75 @@
 <?php
-include('conn.php');
-if(isset($_POST['submit'])){
-    $username = $_POST['user'];
-    $password = $_POST['pass'];
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+require_once 'conn.php';
 
+function log_login_attempt($conn, $username, $userid, $attempted_password, $status) {
+    $browser_used = $_SERVER['HTTP_USER_AGENT'];
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    $mac_address = exec('getmac');
+    $mac_address = strtok($mac_address, ' ');
 
-    $sql = "select * from users where username = '$username'and password = '$password'"; 
-    $result = mysqli_query($conn, $sql); 
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $count = mysqli_num_rows($result);  
-     if($count==1){
-        header("Location:welcome.php");
-     }
-     else{
-        echo`<script>
-        window.location.href = "index.php";
-        alert("LOgin failed");
-        </script>`;
-     }
+    $sql = "INSERT INTO login_attempts (userid, username, attempted_password, browser_used, ip_address, mac_address, status) 
+            VALUES ('$userid', '$username', '$attempted_password', '$browser_used', '$ip_address', '$mac_address', '$status')";
+    $conn->query($sql);
 }
-?>
-<?php
-  include("conn.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    
+    $sql = "SELECT userid, username, password FROM users WHERE username = '$username'";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user['password'])) {
+            // Set session and cookies
+            $_SESSION['userid'] = $user['userid'];
+            $_SESSION['username'] = $user['username'];
+            setcookie("userid", $user['userid'], time() + (86400 * 30), "/");
+            setcookie("username", $user['username'], time() + (86400 * 30), "/");
+
+            // Log successful login attempt
+            log_login_attempt($conn, $user['username'], $user['userid'], $password, 'success');
+            
+            header("Location: dashboard.php");
+            exit();
+        } else {
+            // Log failed login attempt
+            log_login_attempt($conn, $username, 0, $password, 'failed');
+            $error_message = "Invalid password.";
+        }
+    } else {
+        // Log failed login attempt
+        log_login_attempt($conn, $username, 0, $password, 'failed');
+        $error_message = "No user found with that username.";
+    }
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-
+    <title>Login</title>
 </head>
 <body>
-    <div id="form">
-        <h1>Login Form</h1>
-        <form name="form"action="" method="POST">
-            <label>Username: </label>
-            <input type="text" id="user" name="user">
-            <br>
-            <br>
-            <label>Password</label>
-            <input type="password" id="pass" name="pass">
-<br>
-<br>
-
-            <input type="submit" id="btn" value="login" name="submit"/>
-</form>
-</div>
-
+    <h2>Login</h2>
+    <?php if (!empty($error_message)) : ?>
+        <p style="color: red;"><?php echo $error_message; ?></p>
+    <?php endif; ?>
+    <form method="post" action="">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>

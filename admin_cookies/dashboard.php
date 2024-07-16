@@ -1,11 +1,9 @@
-
 <?php
-require_once 'session_user.php'; // Include session check
+// require_once 'session_user.php'; // Include session check
 
 // The user is authenticated if this point is reached
-echo "Welcome, " . htmlspecialchars($username) . "!<br>";
-echo "Your User ID is: " . htmlspecialchars($userid) . ".";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +13,7 @@ echo "Your User ID is: " . htmlspecialchars($userid) . ".";
 <body>
     <h2>Dashboard</h2>
     <p>Welcome to your dashboard, <?php echo htmlspecialchars($username); ?>.</p>
+    <p>Your User ID is: <?php echo htmlspecialchars($userid); ?>.</p>
     <p><a href="logout.php">Logout</a></p>
 </body>
 </html>
