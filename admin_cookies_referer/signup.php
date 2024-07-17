@@ -5,25 +5,25 @@
     }
 ?>
 <?php
-    include("connection.php");
+    include("conn.php");
     if(isset($_POST['submit'])){
         $username = mysqli_real_escape_string($conn, $_POST['user']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['pass']);
-        $cpassword = mysqli_real_escape_string($conn, $_POST['cpass']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']);
+        $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);
         
-        $sql="select * from signup where username='$username'";
+        $sql="select * from users where username='$username'";
         $result = mysqli_query($conn, $sql);
         $count_user = mysqli_num_rows($result);
 
-        $sql="select * from signup where email='$email'";
+        $sql="select * from users where email='$email'";
         $result = mysqli_query($conn, $sql);
         $count_email = mysqli_num_rows($result);
 
         if($count_user == 0 & $count_email==0){
             if($password==$cpassword){
                 $hash = password_hash($password, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO signup(username, email, password) VALUES('$username', '$email', '$hash')";
+                $sql = "INSERT INTO users(username, email, password) VALUES('$username', '$email', '$hash')";
                 $result = mysqli_query($conn, $sql);
                 if($result){
                     header("Location: login.php");
