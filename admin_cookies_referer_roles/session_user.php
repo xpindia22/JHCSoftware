@@ -1,15 +1,16 @@
 <?php
 session_start();
-require_once 'conn.php'; // Ensure the connection file is included
+require_once 'conn.php'; // Ensure the database connection is included
 
-// Define the base URL
-$base_url = 'http://localhost/githubmine/JHCSoftware/admin_cookies_referer';
+// Debugging: Check if the connection is established
+if ($conn == null) {
+    die("Database connection not established.");
+}
 
 // Check if user is authenticated via cookies
 if (!isset($_COOKIE['userid']) || !isset($_COOKIE['username'])) {
-    // Store the requested URL and redirect to login
-    $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
-    header("Location: $base_url/login.php");
+    echo "Cookies not set. Redirecting to login.php";
+    header("Location: login.php");
     exit();
 }
 
@@ -17,33 +18,34 @@ if (!isset($_COOKIE['userid']) || !isset($_COOKIE['username'])) {
 $userid = $_COOKIE['userid'];
 $username = $_COOKIE['username'];
 
+// Debugging: Print the cookies
+echo "Cookies - userid: $userid, username: $username<br>";
+
 // Validate session and cookies
 if (!isset($_SESSION['userid']) || !isset($_SESSION['username']) ||
     $_SESSION['userid'] !== $userid || $_SESSION['username'] !== $username) {
-    // Redirect to login if session and cookie values mismatch
-    $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
-    header("Location: $base_url/login.php");
-    exit();
-}
-
-// Fetch the user role from the database
-$sql = "SELECT role FROM users WHERE userid = '$userid'";
-$result = $conn->query($sql);
-
-if ($result === false) {
-    die("Database query failed: " . $conn->error);
-}
-
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-    $role = $user['role'];
-} else {
-    // If no user found, force logout
-    header("Location: $base_url/logout.php");
+    echo "Session and cookie values mismatch. Redirecting to login.php";
+    header("Location: login.php");
     exit();
 }
 
 // Refresh cookies to extend expiration time
 setcookie("userid", $userid, time() + (86400 * 30), "/");
 setcookie("username", $username, time() + (86400 * 30), "/");
+
+// Debugging: Query to check user's roles
+$sql = "SELECT role FROM users WHERE userid = '$userid'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $_SESSION['role'] = $row['role'];
+    echo "User role: " . $_SESSION['role'] . "<br>";
+} else {
+    echo "No user found with userid $userid. Redirecting to login.php";
+    header("Location: login.php");
+    exit();
+}
+
+// Close the connection
+$conn->close();
 ?>

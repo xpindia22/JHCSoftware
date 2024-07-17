@@ -3,7 +3,7 @@ require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
 
 // Check if the user is an admin
-if ($_SESSION['role'] !== 'admin') {
+if (strpos($_SESSION['role'], 'Admin') === false) {
     echo "Access denied. You do not have permission to access this page.";
     exit();
 }
@@ -16,10 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $notes = mysqli_real_escape_string($conn, $_POST['notes']);
-    $role = mysqli_real_escape_string($conn, $_POST['role']);
+    
+    // Handle roles
+    $roles = isset($_POST['roles']) ? implode(',', $_POST['roles']) : '';
     
     $sql = "INSERT INTO users (userid, username, password, department, email, phone, notes, role) 
-            VALUES ('$userid', '$username', '$password', '$department', '$email', '$phone', '$notes', '$role')";
+            VALUES ('$userid', '$username', '$password', '$department', '$email', '$phone', '$notes', '$roles')";
     
     if ($conn->query($sql) === TRUE) {
         echo "User registered successfully.";
@@ -61,17 +63,23 @@ $conn->close();
         <label for="notes">Notes:</label>
         <textarea id="notes" name="notes"></textarea><br><br>
         
-        <label for="role">Role:</label>
-        <select id="role" name="role">
-            <option value="Admin">Admin</option>
-            <option value="Staff">Staff</option>
-            <option value="Pharmacy">Pharmacy</option>
-            <option value="Accounts">Accounts</option>
-            <option value="Lab">Lab</option>
-            <option value="Reception">Reception</option>
-            <option value="HR">HR</option>
-            <option value="MTS">MTS</option>
-        </select><br><br>
+        <label for="roles">Roles:</label><br>
+        <input type="checkbox" id="admin" name="roles[]" value="Admin">
+        <label for="admin">Admin</label><br>
+        <input type="checkbox" id="staff" name="roles[]" value="Staff">
+        <label for="staff">Staff</label><br>
+        <input type="checkbox" id="pharmacy" name="roles[]" value="Pharmacy">
+        <label for="pharmacy">Pharmacy</label><br>
+        <input type="checkbox" id="accounts" name="roles[]" value="Accounts">
+        <label for="accounts">Accounts</label><br>
+        <input type="checkbox" id="lab" name="roles[]" value="Lab">
+        <label for="lab">Lab</label><br>
+        <input type="checkbox" id="reception" name="roles[]" value="Reception">
+        <label for="reception">Reception</label><br>
+        <input type="checkbox" id="hr" name="roles[]" value="HR">
+        <label for="hr">HR</label><br>
+        <input type="checkbox" id="mts" name="roles[]" value="MTS">
+        <label for="mts">MTS</label><br><br>
         
         <input type="submit" value="Register">
     </form>
