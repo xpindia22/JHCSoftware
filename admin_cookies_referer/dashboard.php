@@ -10,8 +10,7 @@ require_once 'session_user.php'; // Include session check
 </head>
 <body>
     <h2>Dashboard</h2>
-    <p>Welcome to your dashboard, <?php echo htmlspecialchars($username); ?>.</p>
-    <p>Your User ID is: <?php echo htmlspecialchars($userid); ?>.</p>
+    <p>Welcome to your dashboard, <?php echo htmlspecialchars($_SESSION['username']); ?>.</p>
     <p><a href="logout.php">Logout</a></p>
 </body>
 </html>
