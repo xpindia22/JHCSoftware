@@ -2,8 +2,7 @@
 session_start();
 require_once 'conn.php'; // Ensure the database connection is included
 
-// Debugging: Check if the connection is established
-if ($conn == null) {
+if (!isset($conn) || $conn->connect_error) {
     die("Database connection not established.");
 }
 
@@ -36,6 +35,7 @@ setcookie("username", $username, time() + (86400 * 30), "/");
 // Debugging: Query to check user's roles
 $sql = "SELECT role FROM users WHERE userid = '$userid'";
 $result = $conn->query($sql);
+
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $_SESSION['roles'] = explode(',', $row['role']); // Store roles as an array
