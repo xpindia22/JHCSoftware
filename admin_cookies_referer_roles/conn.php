@@ -1,17 +1,14 @@
 <?php
-
-$host = "localhost";
-$user = "mydb";
-$pwd = "mydb";//password should never be left blank on a live server.
-$db = "mydb";
+$servername = "localhost";
+$username = "mydb";
+$password = "mydb";
+$dbname = "mydb";
 
 // Create connection
-$conn = new mysqli($host, $user, $pwd, $db);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} else{
-  echo"connection ok";
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>

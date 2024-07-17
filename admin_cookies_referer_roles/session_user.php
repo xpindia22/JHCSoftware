@@ -2,8 +2,11 @@
 session_start();
 require_once 'conn.php'; // Ensure the database connection is included
 
-if (!isset($conn) || $conn->connect_error) {
-    die("Database connection not established.");
+// Debugging: Check if database connection is established
+if ($conn->connect_error) {
+    die("Database connection not established: " . $conn->connect_error);
+} else {
+    echo "Database connection established.<br>";
 }
 
 // Check if user is authenticated via cookies
@@ -45,6 +48,9 @@ if ($result->num_rows > 0) {
     header("Location: login.php");
     exit();
 }
+
+// Debugging: Check session roles
+echo "Session roles: " . implode(', ', $_SESSION['roles']) . "<br>";
 
 // Close the connection
 $conn->close();

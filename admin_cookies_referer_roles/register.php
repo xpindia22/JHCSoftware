@@ -2,6 +2,9 @@
 require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
 
+// Debugging: Check if session roles are set correctly
+echo "Session roles before access check: " . implode(', ', $_SESSION['roles']) . "<br>";
+
 // Check if the user is an admin
 if (!in_array('Admin', $_SESSION['roles'])) {
     echo "Access denied. You do not have permission to access this page.";
