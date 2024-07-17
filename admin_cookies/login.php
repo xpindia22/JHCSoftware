@@ -1,5 +1,7 @@
 <?php
-error_reporting(E_ALL); ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ob_start(); // Start output buffering
 session_start();
 require_once 'conn.php';
 
@@ -11,24 +13,26 @@ function log_login_attempt($conn, $username, $userid, $department, $email, $phon
 
     $sql = "INSERT INTO login_attempts (userid, username, department, email, phone, browser_used, ip_address, mac_address, attempted_password, status) 
             VALUES ('$userid', '$username', '$department', '$email', '$phone', '$browser_used', '$ip_address', '$mac_address', '$attempted_password', '$status')";
-    $conn->query($sql);
+    if (!$conn->query($sql)) {
+        echo "Error logging attempt: " . $conn->error . "<br>";
+    }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    
-    $sql = "SELECT userid, username, password, department, email, phone FROM admin WHERE username = '$username'";
+
+    $sql = "SELECT userid, username, password, department, email, phone FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
-    
+
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         if (password_verify($password, $user['password'])) {
             // Set session and cookies
             $_SESSION['userid'] = $user['userid'];
             $_SESSION['username'] = $user['username'];
-            setcookie("userid", $user['userid'], time() + (86400 * 60), "/");
-            setcookie("username", $user['username'], time() + (86400 * 60), "/");
+            setcookie("userid", $user['userid'] ?? '', time() + (86400 * 60), "/");
+            setcookie("username", $user['username'] ?? '', time() + (86400 * 60), "/");
 
             // Log successful login attempt
             log_login_attempt($conn, $user['username'], $user['userid'], $user['department'], $user['email'], $user['phone'], $password, 'success');
@@ -51,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
+ob_end_flush(); // Flush the output buffer and send output
 ?>
 
 <!DOCTYPE html>
