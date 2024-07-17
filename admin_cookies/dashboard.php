@@ -1,7 +1,5 @@
 <?php
-// require_once 'session_user.php'; // Include session check
-
-// The user is authenticated if this point is reached
+require_once 'session_user.php'; // Include session check
 ?>
 
 <!DOCTYPE html>
