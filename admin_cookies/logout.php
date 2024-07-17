@@ -1,10 +1,5 @@
 <?php
 session_start();
-<<<<<<< HEAD
-session_destroy();
-setcookie("userid", "", time() - 3600, "/");
-setcookie("username", "", time() - 3600, "/");
-=======
 
 // Unset all session variables
 $_SESSION = array();
@@ -21,7 +16,6 @@ if (isset($_COOKIE['username'])) {
 }
 
 // Redirect to login page
->>>>>>> work
 header("Location: login.php");
 exit();
 ?>

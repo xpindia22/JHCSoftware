@@ -1,9 +1,6 @@
 <?php
 require_once 'conn.php';
-<<<<<<< HEAD
-=======
 require_once 'session_user.php'; // Include session check
->>>>>>> work
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
