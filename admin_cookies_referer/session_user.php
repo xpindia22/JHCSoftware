@@ -29,6 +29,11 @@ if (!isset($_SESSION['userid']) || !isset($_SESSION['username']) ||
 // Fetch the user role from the database
 $sql = "SELECT role FROM users WHERE userid = '$userid'";
 $result = $conn->query($sql);
+
+if ($result === false) {
+    die("Database query failed: " . $conn->error);
+}
+
 if ($result->num_rows > 0) {
     $user = $result->fetch_assoc();
     $role = $user['role'];

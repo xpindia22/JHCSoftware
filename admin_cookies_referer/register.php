@@ -7,6 +7,7 @@ if ($_SESSION['role'] !== 'admin') {
     echo "Access denied. You do not have permission to access this page.";
     exit();
 }
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userid = mysqli_real_escape_string($conn, $_POST['userid']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -66,7 +67,4 @@ $conn->close();
             <option value="admin">Admin</option>
         </select><br><br>
         
-        <input type="submit" value="Register">
-    </form>
-</body>
-</html>
+        <input type=
