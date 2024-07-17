@@ -3,7 +3,7 @@ require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
 
 // Check if the user is an admin
-if (strpos($_SESSION['role'], 'Admin') === false) {
+if (!in_array('Admin', $_SESSION['roles'])) {
     echo "Access denied. You do not have permission to access this page.";
     exit();
 }

@@ -38,8 +38,8 @@ $sql = "SELECT role FROM users WHERE userid = '$userid'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $_SESSION['role'] = $row['role'];
-    echo "User role: " . $_SESSION['role'] . "<br>";
+    $_SESSION['roles'] = explode(',', $row['role']); // Store roles as an array
+    echo "User roles: " . implode(', ', $_SESSION['roles']) . "<br>";
 } else {
     echo "No user found with userid $userid. Redirecting to login.php";
     header("Location: login.php");
