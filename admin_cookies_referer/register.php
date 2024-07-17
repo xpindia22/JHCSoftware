@@ -1,17 +1,19 @@
 <?php
+session_start();
 require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userid = mysqli_real_escape_string($conn, $_POST['userid']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
     $password = password_hash(mysqli_real_escape_string($conn, $_POST['password']), PASSWORD_BCRYPT);
     $department = mysqli_real_escape_string($conn, $_POST['department']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $notes = mysqli_real_escape_string($conn, $_POST['notes']);
     
-    $sql = "INSERT INTO users (username, name, password, department, email, phone, notes) VALUES ('$username', '$name', '$password', '$department', '$email', '$phone', '$notes')";
+    $sql = "INSERT INTO users (userid, username, password, department, email, phone, notes) 
+            VALUES ('$userid', '$username', '$password', '$department', '$email', '$phone', '$notes')";
     
     if ($conn->query($sql) === TRUE) {
         echo "User registered successfully.";
@@ -32,11 +34,11 @@ $conn->close();
 <body>
     <h2>Register User</h2>
     <form method="post" action="">
+        <label for="userid">User ID:</label>
+        <input type="text" id="userid" name="userid" required><br><br>
+
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
         
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br><br>
