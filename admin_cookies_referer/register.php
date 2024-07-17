@@ -63,8 +63,17 @@ $conn->close();
         
         <label for="role">Role:</label>
         <select id="role" name="role">
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
+            <option value="Admin">Admin</option>
+            <option value="Staff">Staff</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Accounts">Accounts</option>
+            <option value="Lab">Lab</option>
+            <option value="Reception">Reception</option>
+            <option value="HR">HR</option>
+            <option value="MTS">MTS</option>
         </select><br><br>
         
-        <input type=
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
