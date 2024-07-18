@@ -1,6 +1,6 @@
 <?php
-// require_once 'session_check.php';
-require_once 'session_doctor.php';
+require_once 'session_user.php';
+// require_once 'session_doctor.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +28,10 @@ tr:nth-child(even) {
 <?php
 require_once '../config/conn.php'; // connect to the database.
 // Fetch the logged-in doctor's ID from the session
-$doctor_id = $_SESSION['doctor_id'];
+$doctor_username = $_SESSION['doctor_username'];
 
 // Fetch all unit_no from the user_info table assigned to the logged-in doctor
-$sql = "SELECT DISTINCT unit_no FROM visits WHERE doctor_id = '$doctor_id' ORDER BY unit_no DESC";
+$sql = "SELECT DISTINCT unit_no FROM visits WHERE doctor_username = '$doctor_username' ORDER BY unit_no DESC";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
   $unit_no = $_POST['unit_no_name'];
   $sql = "SELECT id, name, unit_no, age, sex, doctor_fname, doctor_lname, mobile, diagnosis, visit_date, cc, hpi, pmh, obg, exam, treatment, medicines, lab, notes 
           FROM visits 
-          WHERE unit_no = '$unit_no' AND doctor_id = '$doctor_id' 
+          WHERE unit_no = '$unit_no' AND doctor_username = '$doctor_username' 
           ORDER BY id ASC";
   $result = $conn->query($sql);
 

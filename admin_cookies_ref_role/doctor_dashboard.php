@@ -5,7 +5,7 @@ require '../header-jhcpl-doctor.php';
 require_once '../config/conn.php'; // connect to the database.
 
 // Check if the user is an admin
-if (!isset($_SESSION['roles']) || !is_array($_SESSION['roles']) || !in_array('doctor', $_SESSION['roles'])) {
+if (!isset($_SESSION['roles']) || !is_array($_SESSION['roles']) || !in_array('Doctor', $_SESSION['roles'])) {
   echo "Access denied. You do not have permission to access this page.";
   exit();
 }
