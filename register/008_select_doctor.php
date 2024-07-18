@@ -11,17 +11,16 @@ $mobile = $_POST['mobile'];
 $diagnosis = $_POST['diagnosis'];
 $date = $_POST['date'];
 
-// Fetch all doctors from the doctors table
-$sql = "SELECT doctor_id, fname, lname FROM doctors ORDER BY doctor_id DESC";
+// Fetch all doctors from the users table where role includes 'Doctor'
+$sql = "SELECT userid, username FROM users WHERE FIND_IN_SET('Doctor', role) ORDER BY userid DESC";
 $result = $conn->query($sql);
 
 $doctor_options = "";
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $doctor_id = $row["doctor_id"];
-        $fname = $row["fname"];
-        $lname = $row["lname"];
-        $doctor_options .= "<option value='$doctor_id'>$fname $lname</option>";
+        $userid = $row["userid"];
+        $username = $row["username"];
+        $doctor_options .= "<option value='$userid'>$username</option>";
     }
 } else {
     echo "No Doctor found";
@@ -30,7 +29,7 @@ if ($result->num_rows > 0) {
 // Display the form to select a doctor
 echo "<h2>Select Doctor for Patient: $name</h2>
 <form method='post' action='add_visit.php'>
-    <select name='doctor'>
+    <select name='doctor' required>
         <option value=''>Select Doctor</option>
         $doctor_options
     </select>
