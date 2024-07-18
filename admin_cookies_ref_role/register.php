@@ -3,6 +3,12 @@ session_start();
 require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
 
+// Check if the user is an admin
+if (!in_array('Admin', $_SESSION['roles'])) {
+    echo "Access denied. You do not have permission to access this page.";
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userid = mysqli_real_escape_string($conn, $_POST['userid']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -12,8 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $notes = mysqli_real_escape_string($conn, $_POST['notes']);
     
-    $sql = "INSERT INTO users (userid, username, password, department, email, phone, notes) 
-            VALUES ('$userid', '$username', '$password', '$department', '$email', '$phone', '$notes')";
+    // Handle roles (assuming checkbox values are stored as comma-separated string)
+    $roles = isset($_POST['roles']) ? implode(',', $_POST['roles']) : '';
+    
+    $sql = "INSERT INTO users (userid, username, password, department, email, phone, notes, role) 
+            VALUES ('$userid', '$username', '$password', '$department', '$email', '$phone', '$notes', '$roles')";
     
     if ($conn->query($sql) === TRUE) {
         echo "User registered successfully.";
@@ -54,6 +63,18 @@ $conn->close();
         
         <label for="notes">Notes:</label>
         <textarea id="notes" name="notes"></textarea><br><br>
+        
+        <label for="roles">Roles:</label><br>
+        <input type="checkbox" id="admin" name="roles[]" value="Admin">
+        <label for="admin">Admin</label><br>
+        <input type="checkbox" id="nurse" name="roles[]" value="Nurse">
+        <label for="nurse">Nurse</label><br>
+        <input type="checkbox" id="lab" name="roles[]" value="Lab">
+        <label for="lab">Lab</label><br>
+        <input type="checkbox" id="pharmacy" name="roles[]" value="Pharmacy">
+        <label for="pharmacy">Pharmacy</label><br>
+        <input type="checkbox" id="reception" name="roles[]" value="Reception">
+        <label for="reception">Reception</label><br><br>
         
         <input type="submit" value="Register">
     </form>
