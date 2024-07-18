@@ -1,32 +1,25 @@
 <?php
 session_start();
+require_once 'conn.php';
 
-// Check if user is authenticated via cookies
-if (!isset($_COOKIE['userid']) || !isset($_COOKIE['username'])) {
-    // Store the requested URL in a session variable
-    $_SESSION['requested_url'] = $_SERVER['REQUEST_URI'];
-    
-    // Redirect to login page if not authenticated
+if (!isset($_SESSION['userid'])) {
+    // Redirect to login page if not logged in
     header("Location: login.php");
     exit();
 }
 
-// Fetch the logged-in user's details from cookies
-$userid = $_COOKIE['userid'];
-$username = $_COOKIE['username'];
+// Fetch user roles from the database
+$userid = $_SESSION['userid'];
+$sql = "SELECT role FROM users WHERE userid='$userid'";
+$result = $conn->query($sql);
 
-// Validate session and cookies
-if (!isset($_SESSION['userid']) || !isset($_SESSION['username']) ||
-    $_SESSION['userid'] !== $userid || $_SESSION['username'] !== $username) {
-    // Store the requested URL in a session variable
-    $_SESSION['requested_url'] = $_SERVER['REQUEST_URI'];
-    
-    // Redirect to login if session and cookie values mismatch
-    header("Location: login.php");
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $_SESSION['roles'] = explode(',', $row['role']);
+} else {
+    echo "Error: User roles not found.";
     exit();
 }
 
-// Refresh cookies to extend expiration time
-setcookie("userid", $userid, time() + (86400 * 30), "/");
-setcookie("username", $username, time() + (86400 * 30), "/");
+// Do not close the connection here
 ?>
