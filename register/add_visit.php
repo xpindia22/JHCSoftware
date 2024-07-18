@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_doctor'])) {
     $sex = isset($_POST['sex']) ? mysqli_real_escape_string($conn, $_POST['sex']) : '';
     $mobile = isset($_POST['mobile']) ? mysqli_real_escape_string($conn, $_POST['mobile']) : '';
     $diagnosis = isset($_POST['diagnosis']) ? mysqli_real_escape_string($conn, $_POST['diagnosis']) : '';
-    $userid = isset($_POST['users']) ? mysqli_real_escape_string($conn, $_POST['users']) : '';
+    $userid = isset($_POST['doctor']) ? mysqli_real_escape_string($conn, $_POST['doctor']) : '';
     $visit_date = isset($_POST['date']) ? mysqli_real_escape_string($conn, $_POST['date']) : '';
     $date = isset($_POST['date']) ? mysqli_real_escape_string($conn, $_POST['date']) : '';
 
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_doctor'])) {
     echo "User ID from form: $userid<br>";
 
     // Fetch doctor's username based on userid and role 'Doctor'
-    $sql = "SELECT username FROM users WHERE userid = '$userid' AND role = 'Doctor'";
+    $sql = "SELECT username FROM users WHERE userid = '$userid' AND FIND_IN_SET('Doctor', role)";
     $result = $conn->query($sql);
 
     // Debugging: Check the number of rows returned
@@ -41,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['assign_doctor'])) {
     }
 
     // Insert into database
-    $sql = "INSERT INTO visits (name, unit_no, age, sex, mobile, diagnosis, doctor_id, doctor_username, visit_date, date) 
-            VALUES ('$name', '$unit_no', '$age', '$sex', '$mobile', '$diagnosis', '$userid', '$username', '$visit_date', '$date')";
+    $sql = "INSERT INTO visits (name, unit_no, age, sex, mobile, diagnosis, doctor_username, visit_date, date) 
+            VALUES ('$name', '$unit_no', '$age', '$sex', '$mobile', '$diagnosis', '$username', '$visit_date', '$date')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Appointment for Patient: $name, created for Dr. $username ($userid) on $visit_date";
@@ -75,11 +75,11 @@ $conn->close();
     <label for="diagnosis">Diagnosis:</label><br>
     <textarea id="diagnosis" name="diagnosis" required></textarea><br>
     
-    <label for="users">Doctor:</label><br>
-    <select id="users" name="users" required>
+    <label for="doctor">Doctor:</label><br>
+    <select id="doctor" name="doctor" required>
         <?php
-        // Fetch doctors from the users table where role is 'Doctor'
-        $sql = "SELECT userid, username FROM users WHERE role = 'Doctor'";
+        // Fetch doctors from the users table where role includes 'Doctor'
+        $sql = "SELECT userid, username FROM users WHERE FIND_IN_SET('Doctor', role)";
         $result = $conn->query($sql);
         
         if ($result->num_rows > 0) {
