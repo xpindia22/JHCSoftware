@@ -18,11 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $notes = mysqli_real_escape_string($conn, $_POST['notes']);
     
+<<<<<<<< HEAD:admin_cookies_ref_role/register.php
     // Handle roles (assuming checkbox values are stored as comma-separated string)
     $roles = isset($_POST['roles']) ? implode(',', $_POST['roles']) : '';
     
     $sql = "INSERT INTO users (userid, username, password, department, email, phone, notes, role) 
             VALUES ('$userid', '$username', '$password', '$department', '$email', '$phone', '$notes', '$roles')";
+========
+    $sql = "INSERT INTO users (userid, username, password, department, email, phone, notes) 
+            VALUES ('$userid', '$username', '$password', '$department', '$email', '$phone', '$notes')";
+>>>>>>>> main:admin_cookies_referer/register.php
     
     if ($conn->query($sql) === TRUE) {
         echo "User registered successfully.";
