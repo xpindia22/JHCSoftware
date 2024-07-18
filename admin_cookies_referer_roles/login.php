@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             log_login_attempt($conn, $user['username'], $user['userid'], $password, 'success');
 
             // Redirect to the originally requested page or dashboard
-            $redirect_url = isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '/dashboard.php';
+            $redirect_url = isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : 'dashboard.php';
             unset($_SESSION['redirect_to']);
             header("Location: http://localhost/githubmine/JHCSoftware/admin_cookies_referer$redirect_url");
             exit();
