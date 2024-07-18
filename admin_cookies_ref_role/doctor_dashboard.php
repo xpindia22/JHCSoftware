@@ -1,9 +1,14 @@
 <?php
-require_once '../admin_cookies_ref_role/session_user.php';
 // require_once '../config/session_doctor.php';
+require_once 'session_user.php';
 require '../header-jhcpl-doctor.php';
 require_once '../config/conn.php'; // connect to the database.
 
+// Check if the user is an admin
+if (!isset($_SESSION['roles']) || !is_array($_SESSION['roles']) || !in_array('doctor', $_SESSION['roles'])) {
+  echo "Access denied. You do not have permission to access this page.";
+  exit();
+}
 ?>
 
 <!DOCTYPE html>
