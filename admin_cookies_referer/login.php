@@ -74,18 +74,19 @@ $conn->close();
     <title>Login</title>
 </head>
 <body>
-    <h2>Login</h2>
+    <h2>Staff Login</h2>
     <?php if (!empty($error_message)) : ?>
         <p style="color: red;"><?php echo $error_message; ?></p>
     <?php endif; ?>
     <form method="post" action="">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="email" id="email" name="email" required value='xxx@xxx.com'><br><br>
         
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="password" id="password" name="password" required value="xxx"><br><br>
         
         <input type="submit" value="Login">
     </form>
-</body>
+ </body>
 </html>
+<p><a href='logout.php'>Logout</a></p>
