@@ -100,6 +100,11 @@ if (isset($_POST['submit'])) {
 
             th {
                 text-align: left; /* Align table headers to the left */
+                width: 150px; /* Reduced column width */
+            }
+
+            td {
+                width: 600px; /* Reduced column width for data cells */
             }
 
             textarea {
