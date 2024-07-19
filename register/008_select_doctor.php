@@ -1,6 +1,6 @@
 <?php
 require_once '../config/session_check.php';
-require_once '../config/conn.php'; // connect to the database.
+require_once '../config/conn.php'; // Connect to the database.
 
 // Fetch patient details from POST data
 $unit_no = $_POST['unit_no'];
@@ -12,7 +12,7 @@ $diagnosis = $_POST['diagnosis'];
 $date = $_POST['date'];
 
 // Fetch all doctors from the users table where role includes 'Doctor'
-$sql = "SELECT userid, username FROM users WHERE FIND_IN_SET('Doctor', role) ORDER BY userid DESC";
+$sql = "SELECT userid, username FROM users WHERE FIND_IN_SET('Doctor', role) ORDER BY username";
 $result = $conn->query($sql);
 
 $doctor_options = "";
@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
         $doctor_options .= "<option value='$userid'>$username</option>";
     }
 } else {
-    echo "No Doctor found";
+    $doctor_options = "<option value=''>No Doctor found</option>"; // Improved fallback message
 }
 
 // Display the form to select a doctor

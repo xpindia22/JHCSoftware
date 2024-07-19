@@ -1,7 +1,7 @@
 <?php
 session_start(); // Start the session
-require 'header-jhcpl.php';
-require_once 'conn.php';
+require '../header-jhcpl.php';
+require_once '../config/conn.php'; // connect to the database.
 
 
 if (isset($_POST['userid']) && isset($_POST['password'])) {
@@ -18,7 +18,8 @@ if (isset($_POST['userid']) && isset($_POST['password'])) {
         $user_data = $result->fetch_assoc();
         if (password_verify($password, $user_data['password'])) {
             $_SESSION['userid'] = $userid;
-            header('Location: 001_register-pt.php');
+            //header('Location: 001_pt_register.php');
+            echo 'Login Successful. <a href="001_pt_register.php">Register a New Patient</a>, <a href="create_pt_appointment.php">Create an Appointment</a>, <a href="../doctors/004_doctor_login.php">Doctor Login</a>';
             exit;
         } else {
             echo 'Invalid password';
