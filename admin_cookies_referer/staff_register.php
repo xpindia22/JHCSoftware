@@ -73,7 +73,7 @@ $conn->close();
     <title>Register User</title>
 </head>
 <body>
-    <h2>Register User</h2>
+    <h2>Register Staff</h2>
     <?php if (!empty($error_message)) : ?>
         <p style="color: red;"><?php echo $error_message; ?></p>
     <?php endif; ?>
