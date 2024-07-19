@@ -35,6 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             setcookie("username", $user['username'], time() + (86400 * 60), "/");
             setcookie("roles", $user['role'], time() + (86400 * 60), "/");
 
+            // Check if the user has the 'SA' role
+            if (in_array('SA', $_SESSION['roles'])) {
+                $_SESSION['is_super_admin'] = true;
+            } else {
+                $_SESSION['is_super_admin'] = false;
+            }
+
             // Log successful login attempt
             log_login_attempt($conn, $email, $user['userid'], $password, 'success');
 
