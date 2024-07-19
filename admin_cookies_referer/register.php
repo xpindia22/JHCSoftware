@@ -34,9 +34,7 @@ $conn->close();
 <body>
     <h2>Register User</h2>
     <form method="post" action="">
-        <label for="userid">User ID:</label>
-        <input type="text" id="userid" name="userid" required><br><br>
-
+        
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
         
