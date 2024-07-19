@@ -98,13 +98,16 @@ if (isset($_POST['submit'])) {
               background-color: #ddd; /* darker gray for every other row */
             }
 
+            th {
+                text-align: left; /* Align table headers to the left */
+            }
+
             textarea {
               width: 70%;
               height: 100px;
             }
         </style>
         <table>
-        
         <tr><th>Visit ID No:</th><td>".$row["id"].", <b>Visit Date</b> ".$row["visit_date"]."</td></tr>
           <tr><th>Chief Complaint</th><td>".$row["cc"]."</td></tr>
           <tr><th>History Of Present Illness</th><td>".$row["hpi"]."</td></tr>
