@@ -26,4 +26,5 @@ foreach ($_SESSION['roles'] as $role) {
 }
 
 echo "</ul>";
+echo "<p><a href='logout.php'>Logout</a></p>";
 ?>

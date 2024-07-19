@@ -2,6 +2,7 @@
 session_start();
 require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
+require_once 'sa.php';
 
 // Function to suggest a new username
 function suggest_username($username, $conn) {
