@@ -1,8 +1,16 @@
 <?php
-session_start();
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
-// require_once 'sa.php';
+require_once 'sa.php';
+// Start session only if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 
 // Function to suggest a new username
 function suggest_username($username, $conn) {
@@ -102,6 +110,7 @@ $conn->close();
         <textarea id="notes" name="notes"></textarea><br><br>
         
         <label for="roles">Roles:</label><br>
+        <input type="checkbox" name="roles[]" value="SA"> Super Admin<br>
         <input type="checkbox" name="roles[]" value="Admin"> Admin<br>
         <input type="checkbox" name="roles[]" value="Doctor"> Doctor<br>
         <input type="checkbox" name="roles[]" value="Nurse"> Nurse<br>
