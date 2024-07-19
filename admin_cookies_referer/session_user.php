@@ -7,7 +7,8 @@ if (!isset($_COOKIE['userid']) || !isset($_COOKIE['username']) || !isset($_COOKI
     $_SESSION['requested_url'] = $_SERVER['REQUEST_URI'];
     
     // Redirect to login page if not authenticated
-    header("Location: login.php");
+    header("Location: ../admin_cookies_referer/login.php");
+
     exit();
 }
 
@@ -23,7 +24,8 @@ if (!isset($_SESSION['userid']) || !isset($_SESSION['username']) || !isset($_SES
     $_SESSION['requested_url'] = $_SERVER['REQUEST_URI'];
     
     // Redirect to login if session and cookie values mismatch
-    header("Location: login.php");
+    header("Location: ../admin_cookies_referer/login.php");
+
     exit();
 }
 
