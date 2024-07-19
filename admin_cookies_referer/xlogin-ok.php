@@ -4,24 +4,24 @@ ini_set('display_errors', 1);
 session_start();
 require_once 'conn.php';
 
-function log_login_attempt($conn, $email, $userid, $attempted_password, $status) {
+function log_login_attempt($conn, $username, $userid, $attempted_password, $status) {
     $browser_used = $_SERVER['HTTP_USER_AGENT'];
     $ip_address = $_SERVER['REMOTE_ADDR'];
     $mac_address = exec('getmac');
     $mac_address = strtok($mac_address, ' ');
 
-    $sql = "INSERT INTO login_attempts (userid, email, browser_used, ip_address, mac_address, attempted_password, status) 
-            VALUES ('$userid', '$email', '$browser_used', '$ip_address', '$mac_address', '$attempted_password', '$status')";
+    $sql = "INSERT INTO login_attempts (userid, username, browser_used, ip_address, mac_address, attempted_password, status) 
+            VALUES ('$userid', '$username', '$browser_used', '$ip_address', '$mac_address', '$attempted_password', '$status')";
     $conn->query($sql);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ob_start(); // Start output buffering
 
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     
-    $sql = "SELECT userid, username, password, role FROM users WHERE email = '$email'";
+    $sql = "SELECT userid, username, password, role FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             setcookie("roles", $user['role'], time() + (86400 * 60), "/");
 
             // Log successful login attempt
-            log_login_attempt($conn, $email, $user['userid'], $password, 'success');
+            log_login_attempt($conn, $user['username'], $user['userid'], $password, 'success');
 
             // Redirect to the originally requested URL if it exists, otherwise to dashboard.php
             $redirect_url = isset($_SESSION['requested_url']) ? $_SESSION['requested_url'] : 'dashboard.php';
@@ -45,13 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Log failed login attempt
-            log_login_attempt($conn, $email, 0, $password, 'failed');
+            log_login_attempt($conn, $username, 0, $password, 'failed');
             $error_message = "Invalid password.";
         }
     } else {
         // Log failed login attempt
-        log_login_attempt($conn, $email, 0, $password, 'failed');
-        $error_message = "No user found with that email address.";
+        log_login_attempt($conn, $username, 0, $password, 'failed');
+        $error_message = "No user found with that username.";
     }
     
     ob_end_flush(); // End and flush the output buffer
@@ -72,8 +72,8 @@ $conn->close();
         <p style="color: red;"><?php echo $error_message; ?></p>
     <?php endif; ?>
     <form method="post" action="">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
         
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br><br>
