@@ -83,13 +83,24 @@ if (isset($_POST['submit'])) {
         $result->data_seek(0); // Reset data pointer
         while ($row = $result->fetch_assoc()) {
             echo "<style>
-            th {
-                text-align: left;
-                width: 200px; /* Adjust as needed */
+            table {
+              border-collapse: collapse;
+              width: 100%;
+              background-color: #f2f2f2; /* light gray */
             }
-            td {
-                text-align: left;
-                padding-left: 0.3cm; /* Adjust as needed */
+
+            th, td {
+              border: 1px solid #ddd; /* light gray */
+              padding: 8px;
+            }
+
+            tr:nth-child(even) {
+              background-color: #ddd; /* darker gray for every other row */
+            }
+
+            textarea {
+              width: 70%;
+              height: 100px;
             }
         </style>
         <table>
@@ -115,5 +126,6 @@ if (isset($_POST['submit'])) {
 
 $conn->close();
 ?>
+
 </body>
 </html>
