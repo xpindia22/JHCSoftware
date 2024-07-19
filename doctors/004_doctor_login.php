@@ -1,22 +1,28 @@
 <?php
 session_start();
-require_once '../config/conn.php'; // connect to the database.
+require_once '../config/conn.php'; // Connect to the database.
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $sql = "SELECT doctor_id, fname, lname, password FROM doctors WHERE username = '$username'";
+    // Fetch user data from the users table
+    $sql = "SELECT userid, username, password, role FROM users WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $doctor = $result->fetch_assoc();
-        if (password_verify($password, $doctor['password'])) {
-            $_SESSION['doctor_id'] = $doctor['doctor_id'];
-            $_SESSION['doctor_fname'] = $doctor['fname'];
-            $_SESSION['doctor_lname'] = $doctor['lname'];
-            header("Location: 005_doctor_dashboard.php");
-            exit;
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user['password'])) {
+            // Check if the user has the Doctor role
+            if (strpos($user['role'], 'Doctor') !== false) {
+                $_SESSION['userid'] = $user['userid'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['roles'] = explode(',', $user['role']);
+                header("Location: 005_doctor_dashboard.php");
+                exit;
+            } else {
+                echo "You are not authorized as a Doctor.";
+            }
         } else {
             echo "Invalid password.";
         }
