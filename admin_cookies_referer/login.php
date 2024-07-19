@@ -30,38 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set session and cookies
             $_SESSION['userid'] = $user['userid'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
+            $_SESSION['roles'] = explode(',', $user['role']);
             setcookie("userid", $user['userid'], time() + (86400 * 60), "/");
             setcookie("username", $user['username'], time() + (86400 * 60), "/");
-            setcookie("role", $user['role'], time() + (86400 * 60), "/");
+            setcookie("roles", $user['role'], time() + (86400 * 60), "/");
 
             // Log successful login attempt
             log_login_attempt($conn, $user['username'], $user['userid'], $password, 'success');
-            
-            // Determine redirect URL based on role
-            $roles = explode(',', $user['role']);
-            if (in_array('Doctor', $roles)) {
-                $redirect_url = 'dashboard_doctor.php';
-            } elseif (in_array('Nurse', $roles)) {
-                $redirect_url = 'dashboard_nurse.php';
-            } elseif (in_array('Laboratory', $roles)) {
-                $redirect_url = 'dashboard_laboratory.php';
-            } elseif (in_array('Pharmacy', $roles)) {
-                $redirect_url = 'dashboard_pharmacy.php';
-            } elseif (in_array('Reception', $roles)) {
-                $redirect_url = 'dashboard_reception.php';
-            } elseif (in_array('MTS', $roles)) {
-                $redirect_url = 'dashboard_mts.php';
-            } elseif (in_array('Accounts', $roles)) {
-                $redirect_url = 'dashboard_accounts.php';
-            } elseif (in_array('Echocardiographer', $roles)) {
-                $redirect_url = 'dashboard_echocardiographer.php';
-            } else {
-                $redirect_url = 'dashboard.php'; // Default dashboard
-            }
 
-            // Redirect to the originally requested URL if it exists, otherwise to the determined dashboard
-            $redirect_url = isset($_SESSION['requested_url']) ? $_SESSION['requested_url'] : $redirect_url;
+            // Redirect to the originally requested URL if it exists, otherwise to dashboard.php
+            $redirect_url = isset($_SESSION['requested_url']) ? $_SESSION['requested_url'] : 'dashboard.php';
             unset($_SESSION['requested_url']); // Clear the stored URL
             header("Location: $redirect_url");
             exit();

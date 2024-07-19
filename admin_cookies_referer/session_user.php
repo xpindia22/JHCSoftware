@@ -2,7 +2,7 @@
 session_start();
 
 // Check if user is authenticated via cookies
-if (!isset($_COOKIE['userid']) || !isset($_COOKIE['username']) || !isset($_COOKIE['role'])) {
+if (!isset($_COOKIE['userid']) || !isset($_COOKIE['username']) || !isset($_COOKIE['roles'])) {
     // Store the requested URL in a session variable
     $_SESSION['requested_url'] = $_SERVER['REQUEST_URI'];
     
@@ -14,11 +14,11 @@ if (!isset($_COOKIE['userid']) || !isset($_COOKIE['username']) || !isset($_COOKI
 // Fetch the logged-in user's details from cookies
 $userid = $_COOKIE['userid'];
 $username = $_COOKIE['username'];
-$role = $_COOKIE['role'];
+$roles = explode(',', $_COOKIE['roles']);
 
 // Validate session and cookies
-if (!isset($_SESSION['userid']) || !isset($_SESSION['username']) || !isset($_SESSION['role']) ||
-    $_SESSION['userid'] !== $userid || $_SESSION['username'] !== $username || $_SESSION['role'] !== $role) {
+if (!isset($_SESSION['userid']) || !isset($_SESSION['username']) || !isset($_SESSION['roles']) ||
+    $_SESSION['userid'] !== $userid || $_SESSION['username'] !== $username || array_diff($_SESSION['roles'], $roles) != array_diff($roles, $_SESSION['roles'])) {
     // Store the requested URL in a session variable
     $_SESSION['requested_url'] = $_SERVER['REQUEST_URI'];
     
@@ -30,8 +30,5 @@ if (!isset($_SESSION['userid']) || !isset($_SESSION['username']) || !isset($_SES
 // Refresh cookies to extend expiration time
 setcookie("userid", $userid, time() + (86400 * 30), "/");
 setcookie("username", $username, time() + (86400 * 30), "/");
-setcookie("role", $role, time() + (86400 * 30), "/");
-
-// Role-based redirection (optional)
-// Note: You might want to handle this in the respective pages where you want to ensure role-based access
+setcookie("roles", implode(',', $roles), time() + (86400 * 30), "/");
 ?>
