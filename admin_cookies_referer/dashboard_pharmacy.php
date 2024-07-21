@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 
 require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
-// require_once 'sa.php';
+require_once 'role_pharmacy.php';
 
 // Start session only if not already started
 if (session_status() == PHP_SESSION_NONE) {
