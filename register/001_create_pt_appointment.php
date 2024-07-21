@@ -1,6 +1,8 @@
 <?php
-require_once '../config/session_check.php';
+// require_once '../config/session_check.php';
+require_once '../admin_cookies_referer/session_user.php';
 require '../header-jhcpl.php';
+// require_once '../admin_cookies_referer/sa.php';
 
 ?>
 
