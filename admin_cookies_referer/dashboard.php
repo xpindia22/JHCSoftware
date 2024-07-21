@@ -12,7 +12,7 @@ $role_dashboard = [
     'MTS' => 'dashboard_mts.php',
     'Accounts' => 'dashboard_accounts.php',
     'Echocardiographer' => 'dashboard_echocardiographer.php'
-    'SA' => 'dashboard_sa.php'
+    //'SA' => 'dashboard_sa.php'
 ];
 
 echo "<h2>Welcome, $username</h2>";
