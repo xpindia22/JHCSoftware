@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 
 require_once 'conn.php';
 require_once 'session_user.php'; // Include session check
-// require_once 'role_admin_allow.php';
+require_once 'role_pharmacy.php';
 
 // Start session only if not already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -20,5 +20,8 @@ echo "<ul>";
 
 ?>
 
-<p><a href='../admin_cookies_referer/staff_register.php'>Register Staff</a></p>
+<p><a href='../admin_cookies_referer/edit_pt.php'>Edit Patient Record</a></p>
+
+<br>
+
 <p><a href='logout.php'>Logout</a></p>
