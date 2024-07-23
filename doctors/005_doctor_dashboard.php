@@ -1,5 +1,5 @@
 <?php
-require_once '../config/session_doctor.php';
+require_once '../config/session_user.php'; // Include session check
 require '../header-jhcpl-doctor.php';
 require_once '../config/conn.php'; // connect to the database.
 

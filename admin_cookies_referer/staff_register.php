@@ -2,9 +2,9 @@
 // Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require_once 'conn.php';
+require_once '../config/conn.php'; // Connect to the database.
 require_once 'session_user.php'; // Include session check
-require_once 'role_sa_allow.php';
+
 // Start session only if not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -95,6 +95,7 @@ $conn->close();
             <option value="Laboratory">Laboratory</option>
             <option value="MTS">MTS</option>
             <option value="Accounts">Accounts</option>
+            <option value="SA">Super Admin</option>
         </select><br><br>
         
         <label for="email">Email:</label>

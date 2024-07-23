@@ -2,7 +2,7 @@
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);
 session_start();
-require_once 'conn.php';
+require_once '../config/conn.php';
 
 function log_login_attempt($conn, $email, $userid, $attempted_password, $status) {
     $browser_used = $_SERVER['HTTP_USER_AGENT'];
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set session and cookies
             $_SESSION['userid'] = $user['userid'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['roles'] = explode(',', $user['role']);
+            $_SESSION['roles'] = array_map('trim', explode(',', $user['role']));
             setcookie("userid", $user['userid'], time() + (86400 * 60), "/");
             setcookie("username", $user['username'], time() + (86400 * 60), "/");
             setcookie("roles", $user['role'], time() + (86400 * 60), "/");
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             log_login_attempt($conn, $email, $user['userid'], $password, 'success');
 
             // Redirect to the originally requested URL if it exists, otherwise to dashboard.php
-            $redirect_url = isset($_SESSION['requested_url']) ? $_SESSION['requested_url'] : 'dashboard.php';
+            $redirect_url = isset($_SESSION['requested_url']) ? $_SESSION['requested_url'] : '../dashboard/dashboard.php';
             unset($_SESSION['requested_url']); // Clear the stored URL
             header("Location: $redirect_url");
             exit();

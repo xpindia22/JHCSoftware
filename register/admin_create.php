@@ -1,5 +1,6 @@
 <?php
 require_once '../config/conn.php'; // connect to the database.
+require_once '../config/session_user.php'; // Include session check
 
 // Initialize variables
 $username = $password = "";

@@ -26,6 +26,8 @@ textarea {
 <body>
 
 <?php
+require_once '../config/session_user.php'; // Include session check
+
 require_once '../config/conn.php'; // connect to the database.
 // Fetch the id from the URL
 $id = $_GET['id'];
