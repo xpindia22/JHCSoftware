@@ -2,7 +2,7 @@
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);
 session_start();
-require_once '../config/conn.php'; // Connect to the database.
+require_once '../config/conn.php';
 
 function log_login_attempt($conn, $email, $userid, $attempted_password, $status) {
     $browser_used = $_SERVER['HTTP_USER_AGENT'];
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set session and cookies
             $_SESSION['userid'] = $user['userid'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['roles'] = explode(',', $user['role']);
+            $_SESSION['roles'] = array_map('trim', explode(',', $user['role']));
             setcookie("userid", $user['userid'], time() + (86400 * 60), "/");
             setcookie("username", $user['username'], time() + (86400 * 60), "/");
             setcookie("roles", $user['role'], time() + (86400 * 60), "/");

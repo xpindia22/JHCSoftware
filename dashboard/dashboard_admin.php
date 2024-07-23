@@ -17,7 +17,11 @@ echo "<h2>Welcome, $username</h2>";
 echo "<p>Select your dashboard:</p>";
 echo "<ul>";
 
-
+echo "<p><a href='../admin_cookies_referer/blacklist.php'>Suspend A User</a></p>";
+echo "<p><a href='../admin_cookies_referer/staff_register.php'>Register Staff</a></p>";
+echo "<p><a href='../register/001_create_pt_appointment.php'>Create Patient Appointment</a></p>";
+echo "<p><a href='../admin_cookies_referer/edit_pt.php'>Edit Patient Record</a></p>";
+echo "<p><a href='../admin_cookies_referer/logout.php'>Logout</a></p>";
 ?>
 
 <p><a href='../admin_cookies_referer/staff_register.php'>Register Staff</a></p>

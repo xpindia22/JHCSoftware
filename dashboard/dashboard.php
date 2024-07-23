@@ -11,8 +11,8 @@ $role_dashboard = [
     'Reception' => '../dashboard/dashboard_reception.php',
     'MTS' => '../dashboard/dashboard_mts.php',
     'Accounts' => '../dashboard/dashboard_accounts.php',
-    'Echocardiographer' => '../dashboard/dashboard_echocardiographer.php'
-    //'SA' => 'dashboard_sa.php'
+    'Echocardiographer' => '../dashboard/dashboard_echocardiographer.php',
+    'SA' => '../dashboard/dashboard_sa.php'
 ];
 
 echo "<h2>Welcome, $username</h2>";
@@ -27,5 +27,5 @@ foreach ($_SESSION['roles'] as $role) {
 }
 
 echo "</ul>";
-echo "<p><a href='logout.php'>Logout</a></p>";
+echo "<p><a href='../admin_cookies_referer/logout.php'>Logout</a></p>";
 ?>

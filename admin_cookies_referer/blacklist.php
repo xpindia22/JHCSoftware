@@ -8,6 +8,11 @@ if (!isset($_SESSION['userid']) || !in_array('SA', $_SESSION['roles'])) {
     exit();
 }
 
+// Define the super admin userid
+$super_admin_userid = '14'; // Replace with your actual userid
+$super_admin_userid = '15'; // Replace with your actual userid
+
+
 // Initialize message variable
 $message = "";
 
@@ -29,14 +34,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Extract user details from the selected option
     list($userid, $username, $email) = explode(' | ', $selected_user);
 
-    $sql = "UPDATE users SET status = ? WHERE userid = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ss', $status, $userid);
-
-    if ($stmt->execute()) {
-        $message = "User with UserID '$userid' and Email '$email' has been successfully $status" . "ed.";
+    // Check if the user is the super admin
+    if ($userid === $super_admin_userid) {
+        $message = "Error: You cannot blacklist or whitelist the super admin.";
     } else {
-        $message = "Error updating user status: " . $conn->error;
+        $sql = "UPDATE users SET status = ? WHERE userid = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('ss', $status, $userid);
+
+        if ($stmt->execute()) {
+            $message = "User with UserID '$userid' and Email '$email' has been successfully " . ($status === 'blacklist' ? 'blacklisted' : 'whitelisted') . ".";
+        } else {
+            $message = "Error updating user status: " . $conn->error;
+        }
     }
 }
 
