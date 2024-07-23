@@ -11,24 +11,30 @@ if (!isset($_SESSION['userid']) || !in_array('SA', $_SESSION['roles'])) {
 // Initialize message variable
 $message = "";
 
+// Fetch all users for the dropdown
+$sql = "SELECT userid, username, email FROM users";
+$result = $conn->query($sql);
+$users = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $users[] = $row;
+    }
+}
+
 // Process the form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $identifier = mysqli_real_escape_string($conn, $_POST['identifier']);
+    $selected_user = mysqli_real_escape_string($conn, $_POST['selected_user']);
     $status = mysqli_real_escape_string($conn, $_POST['status']);
-    $identifier_type = mysqli_real_escape_string($conn, $_POST['identifier_type']);
 
-    // Determine the column to update based on the identifier type
-    if ($identifier_type == 'email') {
-        $sql = "UPDATE users SET status = ? WHERE email = ?";
-    } else {
-        $sql = "UPDATE users SET status = ? WHERE userid = ?";
-    }
+    // Extract user details from the selected option
+    list($userid, $username, $email) = explode(' | ', $selected_user);
 
+    $sql = "UPDATE users SET status = ? WHERE userid = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ss', $status, $identifier);
+    $stmt->bind_param('ss', $status, $userid);
 
     if ($stmt->execute()) {
-        $message = "User with $identifier_type '$identifier' has been successfully $status" . "ed.";
+        $message = "User with UserID '$userid' and Email '$email' has been successfully $status" . "ed.";
     } else {
         $message = "Error updating user status: " . $conn->error;
     }
@@ -49,15 +55,15 @@ $conn->close();
         <p><?php echo $message; ?></p>
     <?php endif; ?>
     <form method="post" action="">
-        <label for="identifier_type">Identifier Type:</label>
-        <select id="identifier_type" name="identifier_type" required>
-            <option value="email">Email</option>
-            <option value="userid">User ID</option>
+        <label for="selected_user">Select User:</label>
+        <select id="selected_user" name="selected_user" required>
+            <?php foreach ($users as $user) : ?>
+                <option value="<?php echo $user['userid'] . ' | ' . $user['username'] . ' | ' . $user['email']; ?>">
+                    <?php echo $user['userid'] . ' | ' . $user['username'] . ' | ' . $user['email']; ?>
+                </option>
+            <?php endforeach; ?>
         </select><br><br>
-        
-        <label for="identifier">Email/User ID:</label>
-        <input type="text" id="identifier" name="identifier" required><br><br>
-        
+
         <label for="status">Status:</label>
         <select id="status" name="status" required>
             <option value="blacklist">Blacklist</option>
