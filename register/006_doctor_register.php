@@ -1,6 +1,7 @@
 <h2> Doctor Registration Form</h2>
 <?php
 require_once '../config/conn.php'; // connect to the database.
+require_once '../config/session_user.php'; // Include session check
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Get doctor's information from the registration form

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../admin_cookies_referer/session_user.php';
+require_once '../config/session_user.php'; // Include session check
 require_once '../config/conn.php'; // Connect to the database
 
 // Authenticate the doctor

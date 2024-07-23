@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'conn.php';
+require_once '../config/conn.php'; // connect to the database.
 
 // Check if the user is logged in and has admin privileges
 if (!isset($_SESSION['userid']) || !in_array('SA', $_SESSION['roles'])) {

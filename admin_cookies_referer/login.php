@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             log_login_attempt($conn, $email, $user['userid'], $password, 'success');
 
             // Redirect to the originally requested URL if it exists, otherwise to dashboard.php
-            $redirect_url = isset($_SESSION['requested_url']) ? $_SESSION['requested_url'] : 'dashboard.php';
+            $redirect_url = isset($_SESSION['requested_url']) ? $_SESSION['requested_url'] : '../dashboard/dashboard.php';
             unset($_SESSION['requested_url']); // Clear the stored URL
             header("Location: $redirect_url");
             exit();

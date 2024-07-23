@@ -1,5 +1,6 @@
 <?php
 session_start();
+// require_once '../config/session_user.php'; // Include session check
 require_once '../config/conn.php'; // Connect to the database.
 
 // Fetch the logged-in doctor's username from the session

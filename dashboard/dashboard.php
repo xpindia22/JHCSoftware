@@ -1,17 +1,17 @@
 <?php
-require_once 'session_user.php';
+require_once '../config/session_user.php'; // Include session check
 
 // Define the role-dashboard mappings
 $role_dashboard = [
-    'Admin' => 'dashboard_admin.php',
-    'Doctor' => 'dashboard_doctor.php',
-    'Nurse' => 'dashboard_nurse.php',
-    'Laboratory' => 'dashboard_laboratory.php',
-    'Pharmacy' => 'dashboard_pharmacy.php',
-    'Reception' => 'dashboard_reception.php',
-    'MTS' => 'dashboard_mts.php',
-    'Accounts' => 'dashboard_accounts.php',
-    'Echocardiographer' => 'dashboard_echocardiographer.php'
+    'Admin' => '../dashboard/dashboard_admin.php',
+    'Doctor' => '../dashboard/dashboard_doctor.php',
+    'Nurse' => '../dashboard/dashboard_nurse.php',
+    'Laboratory' => '../dashboard/dashboard_laboratory.php',
+    'Pharmacy' => '../dashboard/dashboard_pharmacy.php',
+    'Reception' => '../dashboard/dashboard_reception.php',
+    'MTS' => '../dashboard/dashboard_mts.php',
+    'Accounts' => '../dashboard/dashboard_accounts.php',
+    'Echocardiographer' => '../dashboard/dashboard_echocardiographer.php'
     //'SA' => 'dashboard_sa.php'
 ];
 

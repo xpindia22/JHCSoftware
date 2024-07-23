@@ -3,8 +3,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once 'conn.php';
-require_once 'session_user.php'; // Include session check
+require_once '../config/conn.php'; // connect to the database.
+require_once '../config/session_user.php'; // Include session check
 // require_once 'role_doctor_allow.php';
 
 // Start session only if not already started
