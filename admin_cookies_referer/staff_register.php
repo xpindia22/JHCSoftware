@@ -95,6 +95,7 @@ $conn->close();
             <option value="Laboratory">Laboratory</option>
             <option value="MTS">MTS</option>
             <option value="Accounts">Accounts</option>
+            <option value="SA">Super Admin</option>
         </select><br><br>
         
         <label for="email">Email:</label>
