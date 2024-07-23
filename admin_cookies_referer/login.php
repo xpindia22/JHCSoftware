@@ -2,7 +2,7 @@
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);
 session_start();
-require_once 'conn.php';
+require_once '../config/conn.php'; // Connect to the database.
 
 function log_login_attempt($conn, $email, $userid, $attempted_password, $status) {
     $browser_used = $_SERVER['HTTP_USER_AGENT'];

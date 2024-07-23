@@ -1,5 +1,5 @@
 <?php
-require_once '../config/session_check.php';
+require_once '../config/session_user.php';
 require_once '../config/conn.php'; // Connect to the database.
 
 // Fetch patient details from POST data

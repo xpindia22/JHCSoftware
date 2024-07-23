@@ -2,7 +2,7 @@
 // Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require_once 'conn.php';
+require_once '../config/conn.php'; // Connect to the database.
 require_once 'session_user.php'; // Include session check
 
 // Start session only if not already started

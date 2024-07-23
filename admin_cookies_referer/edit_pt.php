@@ -1,11 +1,6 @@
 <?php
 session_start();
-require_once '../config/conn.php'; // Connect to the database
-
-// // Authenticate the doctor
-// if (!isset($_SESSION['username']) || !isset($_SESSION['roles']) || !in_array('Doctor', $_SESSION['roles'])) {
-//     die('Unauthorized access. You are not logged in as a Doctor.');
-// }
+require_once '../config/conn.php'; // Connect to the database.
 
 // Fetch the logged-in doctor's username from the session
 $doctor_username = $_SESSION['username'];
