@@ -23,7 +23,3 @@ echo "<p><a href='../admin_cookies_referer/edit_pt.php'>Edit Patient Record</a><
 echo "<p><a href='../admin_cookies_referer/logout.php'>Logout</a></p>";
 
 ?>
-<p><a href='../register/001_create_pt_appointment.php'>Create Patient Appointment</a></p>
-<br>
-<p><a href='../admin_cookies_referer/edit_pt.php'>Edit Patient Record</a></p>
-<p><a href='logout.php'>Logout</a></p>
